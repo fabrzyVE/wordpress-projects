@@ -34,7 +34,6 @@ type FAQPost struct {
 type faqRow struct {
 	question string
 	answer   string
-	persona  string
 	cluster  string
 	slug     string
 }
@@ -79,16 +78,9 @@ func main() {
 	tagCache := map[string]int{}
 
 	for i, row := range rows {
-		content := row.answer
-		// Append the persona on its own line so the FAQ reads as if it
-		// came from the person who asked the question.
-		if persona := strings.TrimSpace(row.persona); persona != "" {
-			content = content + "\n\n" + persona
-		}
-
 		post := FAQPost{
 			Title:   row.question,
-			Content: content,
+			Content: row.answer,
 			Slug:    row.slug,
 			Status:  "publish",
 		}
@@ -128,7 +120,7 @@ func readFAQs(path string) ([]faqRow, error) {
 	for i, col := range header {
 		idx[col] = i
 	}
-	for _, required := range []string{"question", "answer", "persona", "cluster", "slug"} {
+	for _, required := range []string{"question", "answer", "cluster", "slug"} {
 		if _, ok := idx[required]; !ok {
 			return nil, fmt.Errorf("missing column %q", required)
 		}
@@ -146,7 +138,6 @@ func readFAQs(path string) ([]faqRow, error) {
 		rows = append(rows, faqRow{
 			question: rec[idx["question"]],
 			answer:   rec[idx["answer"]],
-			persona:  rec[idx["persona"]],
 			cluster:  rec[idx["cluster"]],
 			slug:     rec[idx["slug"]],
 		})
