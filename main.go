@@ -28,6 +28,7 @@ type FAQPost struct {
 	Content string `json:"content"`
 	Slug    string `json:"slug"`
 	Status  string `json:"status"`
+	Author  int    `json:"author"`
 	Tags    []int  `json:"tags,omitempty"`
 }
 
@@ -70,7 +71,7 @@ func main() {
 
 	auth := base64.StdEncoding.EncodeToString([]byte(config.user + ":" + config.password))
 	baseURL := fmt.Sprintf("https://%s/wp-json/wp/v2", config.domain)
-	postsEndpoint := baseURL + "/posts" // NOTE: we can change this to /faqs for creating faq posts
+	postsEndpoint := baseURL + "/faqs" // NOTE: we can change this to /faqs for creating faq posts
 	client := &http.Client{Timeout: 30 * time.Second}
 
 	// tagCache maps a cluster name to its WordPress tag ID so repeated
@@ -83,6 +84,7 @@ func main() {
 			Content: row.answer,
 			Slug:    row.slug,
 			Status:  "publish",
+			Author:  6,
 		}
 
 		// Tag the post with its cluster value.
