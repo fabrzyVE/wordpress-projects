@@ -1,0 +1,803 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* =========================================================================
+   Trueline — Calculator Page (LPagery template)
+   Self-contained, scoped under .tl-calc so it won't collide with theme/Elementor.
+   Brand font: Montserrat. Accent: #F8A458.
+   ========================================================================= */
+
+.tl-calc *,
+.tl-calc *::before,
+.tl-calc *::after { box-sizing: border-box; }
+
+.tl-calc {
+  --tl-orange: #F8A458;
+  --tl-orange-dark: #ef9442;
+  --tl-ink: #1b2433;        /* headings */
+  --tl-body: #5b6675;       /* body text */
+  --tl-muted: #97a1b0;      /* small/muted */
+  --tl-bg: #f5f8fa;         /* light section bg */
+  --tl-card: #ffffff;
+  --tl-border: #e7ecf1;
+  --tl-dark: #1f2020;       /* dark boxes */
+  --tl-radius: 14px;
+  --tl-shadow: 0 12px 40px rgba(20, 35, 60, .06);
+  --tl-maxw: 1120px;
+
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--tl-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+
+  /* Full-bleed: span the viewport even when dropped inside a constrained
+     Elementor/theme container (which otherwise caps it at ~80%). */
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow-x: hidden;
+}
+
+.tl-calc h1, .tl-calc h2, .tl-calc h3, .tl-calc h4 {
+  color: var(--tl-ink);
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.tl-calc p { margin: 0; }
+.tl-calc a { color: inherit; text-decoration: none; }
+
+.tl-wrap { max-width: var(--tl-maxw); margin: 0 auto; padding: 0 24px; }
+.tl-section { padding: 80px 0; }
+.tl-eyebrow { color: var(--tl-muted); font-size: 13px; }
+
+/* ---- Section heading block (centered) ---- */
+.tl-head { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+.tl-head h2 { font-size: 34px; }
+.tl-head p { margin-top: 12px; color: var(--tl-body); font-size: 16px; }
+.tl-accent { color: var(--tl-orange); }
+
+/* ---- Buttons ---- */
+.tl-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--tl-orange); color: #fff !important;
+  font-weight: 600; font-size: 15px;
+  padding: 14px 26px; border-radius: 10px; border: 0; cursor: pointer;
+  transition: background .15s ease, transform .15s ease;
+  font-family: inherit;
+}
+.tl-btn:hover { background: var(--tl-orange-dark); transform: translateY(-1px); }
+.tl-btn--lg { padding: 16px 30px; font-size: 16px; }
+
+/* =========================================================================
+   1. HERO
+   ========================================================================= */
+.tl-hero {
+  position: relative;
+  color: #fff;
+  padding: 130px 0 110px;
+  background: #0a0d10;
+  background-image: linear-gradient(90deg, rgba(8,11,14,.92) 0%, rgba(8,11,14,.72) 55%, rgba(8,11,14,.45) 100%),
+                    url("https://wearetrueline.com/wp-content/uploads/2026/06/hero-bg.png");
+  background-size: cover;
+  background-position: center;
+}
+.tl-hero__crumbs { font-size: 13px; margin-bottom: 22px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.tl-crumb { color: var(--tl-orange); font-weight: 600; }
+.tl-crumb:hover { text-decoration: underline; }
+.tl-crumb__sep { color: #c7ccd2; }
+.tl-crumb__current { color: #fff; }
+.tl-hero h1 {
+  color: #fff; font-size: 46px; line-height: 1.12; max-width: 720px; font-weight: 700;
+}
+.tl-hero__sub { margin-top: 22px; max-width: 620px; color: #d7dbe0; font-size: 16px; line-height: 1.7; }
+.tl-hero__cta { margin-top: 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.tl-hero__call { color: #d7dbe0; font-size: 14px; }
+.tl-hero__call a { color: #fff; font-weight: 600; }
+
+/* =========================================================================
+   2. CALCULATOR FORM
+   ========================================================================= */
+.tl-calcform { background: var(--tl-bg); }
+.tl-calcform__grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+  background: var(--tl-bg); border-radius: 20px;
+}
+.tl-calcform__col h3 { font-size: 22px; }
+.tl-calcform__hint { color: var(--tl-muted); font-size: 13px; margin-top: 4px; margin-bottom: 22px; }
+
+.tl-field { margin-bottom: 18px; }
+.tl-field > label { display: block; font-size: 14px; font-weight: 600; color: var(--tl-ink); margin-bottom: 8px; }
+.tl-field select,
+.tl-field input[type="text"] {
+  width: 100%; height: 52px; border: 1px solid var(--tl-border); border-radius: 10px;
+  background: #fff; padding: 0 16px; font-size: 15px; color: var(--tl-ink); font-family: inherit;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2397a1b0' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+}
+.tl-field input[type="text"] { background-image: none; }
+
+/* stepper */
+.tl-stepper {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 52px; border: 1px solid var(--tl-border); border-radius: 10px; background: #fff; padding: 0 8px;
+}
+.tl-stepper button {
+  width: 36px; height: 36px; flex: 0 0 36px; padding: 0; margin: 0; border: 0; background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; line-height: 1; color: var(--tl-body); cursor: pointer; border-radius: 8px;
+}
+.tl-stepper button:hover { background: var(--tl-bg); }
+.tl-stepper input {
+  flex: 1 1 auto; min-width: 0; height: 100%; text-align: center; border: 0; padding: 0;
+  font-size: 16px; font-weight: 600; color: var(--tl-ink); background: transparent; font-family: inherit;
+}
+.tl-stepper input:focus { outline: none; }
+
+.tl-moreopts { font-size: 13px; color: var(--tl-muted); margin: 4px 0 24px; }
+.tl-calcform .tl-btn { width: auto; }
+
+/* right column: steps */
+.tl-steps { list-style: none; padding: 0; margin: 0 0 32px; }
+.tl-steps li { display: flex; flex-direction: row; align-items: flex-start; gap: 16px; padding: 14px 0; }
+.tl-steps__num { flex: 0 0 32px; color: var(--tl-orange); font-weight: 700; font-size: 18px; line-height: 1.3; }
+.tl-steps__body { display: flex; flex-direction: column; gap: 5px; }
+.tl-steps__t { color: var(--tl-ink); font-weight: 600; font-size: 15px; }
+.tl-steps__d { font-size: 14px; margin: 0; }
+
+.tl-stdtitle { font-size: 17px; border-top: 1px solid var(--tl-border); padding-top: 26px; }
+.tl-stdsub { color: var(--tl-muted); font-size: 13px; margin: 4px 0 18px; }
+
+.tl-stat {
+  display: flex; align-items: center; gap: 18px; background: #fff; border: 1px solid var(--tl-border);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 12px;
+}
+.tl-stat__big { color: var(--tl-orange); font-weight: 700; font-size: 20px; min-width: 92px; }
+.tl-stat__t { color: var(--tl-ink); font-weight: 600; font-size: 14px; }
+.tl-stat__d { font-size: 12.5px; color: var(--tl-muted); }
+
+/* =========================================================================
+   3. COMPARISON
+   ========================================================================= */
+.tl-cmp__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.tl-cmp__card { background: var(--tl-bg); border-radius: var(--tl-radius); padding: 32px; text-align: left; }
+.tl-cmp__card h3 { font-size: 20px; text-align: left; }
+.tl-cmp__sub { color: var(--tl-muted); font-size: 13px; margin-top: 4px; padding-bottom: 18px; border-bottom: 1px solid var(--tl-border); }
+.tl-cmp__item { display: flex; flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--tl-border); }
+.tl-cmp__item > span:last-child { display: flex; flex-direction: column; gap: 4px; }
+.tl-cmp__item:last-child { border-bottom: 0; }
+.tl-cmp__mark { font-weight: 700; flex-shrink: 0; line-height: 1.5; }
+.tl-cmp--bad .tl-cmp__mark { color: #c9ced6; }
+.tl-cmp--good .tl-cmp__mark { color: var(--tl-orange); }
+.tl-cmp__label { color: var(--tl-ink); font-weight: 600; font-size: 14.5px; }
+.tl-cmp__desc { font-size: 13.5px; margin-top: 4px; }
+
+/* cost box */
+.tl-cost { margin-top: 28px; background: var(--tl-bg); border-radius: 20px; padding: 48px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 56px; align-items: center; }
+.tl-cost > div:first-child { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.tl-cost h3 { font-size: 26px; line-height: 1.25; }
+.tl-cost__body { font-size: 14.5px; margin: 0; line-height: 1.8; max-width: 520px; }
+.tl-cost__stat { background: #fff; border-radius: 12px; padding: 18px 22px; margin-bottom: 14px; }
+.tl-cost__num { color: var(--tl-orange); font-size: 28px; font-weight: 700; }
+.tl-cost__cap { font-size: 13px; color: var(--tl-muted); margin-top: 2px; }
+.tl-foot-note { color: var(--tl-muted); font-size: 11.5px; margin-top: 26px; line-height: 1.6; }
+
+/* =========================================================================
+   4. FEE TABLES
+   ========================================================================= */
+.tl-fees { }
+.tl-table-wrap { border-radius: 12px; overflow: hidden; box-shadow: var(--tl-shadow); margin-bottom: 64px; }
+.tl-table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; }
+.tl-table thead th {
+  background: var(--tl-orange); color: #fff; text-align: left; font-weight: 600;
+  font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; padding: 16px 22px;
+}
+.tl-table tbody td { padding: 18px 22px; border-bottom: 1px solid var(--tl-border); }
+.tl-table tbody tr:nth-child(even) { background: #fafcfd; }
+.tl-table tbody tr:last-child td { border-bottom: 0; }
+.tl-table td:first-child { color: var(--tl-ink); font-weight: 600; }
+.tl-table .tl-row-hl td { background: #fff4ea; }
+.tl-cite { color: var(--tl-muted); font-size: 11.5px; margin-top: -48px; margin-bottom: 0; }
+
+/* =========================================================================
+   5. FEE DRIVERS + HOW TRUELINE FITS
+   ========================================================================= */
+.tl-drivers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.tl-driver { background: var(--tl-orange); color: #fff; border-radius: var(--tl-radius); padding: 30px 28px; text-align: left; }
+.tl-driver__ico { width: 48px; height: 48px; border-radius: 10px; background: rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.tl-driver__ico img { display: block; width: 26px; height: 26px; object-fit: contain; }
+.tl-driver h3 { color: #fff; font-size: 18px; text-align: left; }
+.tl-driver p { color: rgba(255,255,255,.92); font-size: 14px; margin-top: 10px; line-height: 1.6; }
+
+.tl-fits-title { font-size: 30px; text-align: left; margin: 64px 0 24px; }
+.tl-fits {
+  position: relative; overflow: hidden;
+  background: #1f2020; color: #fff; border-radius: 18px; padding: 56px;
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center;
+  background-image: linear-gradient(90deg, rgba(20,21,21,.96) 0%, rgba(20,21,21,.82) 100%), url("https://wearetrueline.com/wp-content/uploads/2026/06/fit-section-bg.png");
+  background-size: cover; background-position: center;
+}
+.tl-fits__main { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+.tl-fits h3 { color: #fff; font-size: 26px; line-height: 1.25; }
+.tl-fits__body { color: #c7ccd2; font-size: 14.5px; margin: 0; max-width: 460px; line-height: 1.8; }
+.tl-fits__stat { border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 20px 24px; margin-bottom: 14px; }
+.tl-fits__stat:last-child { margin-bottom: 0; }
+.tl-fits__num { color: var(--tl-orange); font-size: 30px; font-weight: 700; line-height: 1; }
+.tl-fits__cap { color: #aeb4bc; font-size: 13px; margin-top: 8px; }
+
+/* =========================================================================
+   6. FAQ
+   ========================================================================= */
+.tl-faq { background: #fff; }
+.tl-faq .tl-head { text-align: left; margin-left: 0; max-width: 100%; }
+.tl-faq .tl-head h2 { font-size: 38px; }
+.tl-faq__list { max-width: 100%; }
+.tl-acc {
+  background: #fff; border: 1px solid var(--tl-border); border-radius: 12px; margin-bottom: 12px; overflow: hidden;
+  box-shadow: 0 1px 3px rgba(20, 35, 60, .05);
+}
+.tl-acc__q {
+  width: 100%; text-align: left; background: none; border: 0; cursor: pointer; font-family: inherit;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 20px 24px; font-size: 15px; font-weight: 600; color: var(--tl-ink);
+}
+.tl-acc__sign { color: var(--tl-orange); font-size: 22px; line-height: 1; transition: transform .2s ease; flex-shrink: 0; }
+.tl-acc[open] .tl-acc__sign, .tl-acc.is-open .tl-acc__sign { transform: rotate(45deg); }
+.tl-acc__a { padding: 0 24px; max-height: 0; overflow: hidden; transition: max-height .25s ease, padding .25s ease; font-size: 14px; }
+.tl-acc.is-open .tl-acc__a { max-height: 400px; padding: 0 24px 22px; }
+
+/* =========================================================================
+   7. READY TO HIRE (native -> HubSpot)
+   ========================================================================= */
+.tl-hire__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 0; border-radius: 18px; overflow: hidden; box-shadow: var(--tl-shadow); }
+.tl-hire__img { background-image: url("https://wearetrueline.com/wp-content/uploads/2026/06/hire-form-hubspot-bg.png"); background-size: cover; background-position: center; min-height: 420px; }
+.tl-hire__panel { background: var(--tl-bg); padding: 52px; }
+.tl-hire__panel h2 { font-size: 30px; }
+.tl-hire__panel > p { margin-top: 12px; font-size: 14.5px; max-width: 420px; }
+.tl-hire__form { margin-top: 26px; }
+.tl-hire__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.tl-hire__form input, .tl-hire__form textarea {
+  width: 100%; border: 1px solid var(--tl-border); border-radius: 10px; background: #fff;
+  padding: 14px 16px; font-size: 14.5px; font-family: inherit; color: var(--tl-ink);
+}
+.tl-hire__form textarea { min-height: 92px; resize: vertical; }
+.tl-hire__form input::placeholder, .tl-hire__form textarea::placeholder { color: #9aa3b0; }
+.tl-hire__msg { margin-top: 14px; font-size: 13.5px; display: none; }
+.tl-hire__msg.is-ok { display: block; color: #1f9d57; }
+.tl-hire__msg.is-err { display: block; color: #d6492f; }
+
+/* =========================================================================
+   8. CALCULATORS BY INDUSTRY
+   ========================================================================= */
+.tl-industries { background: #14171a; color: #fff; }
+.tl-industries .tl-head h2 { color: #fff; }
+.tl-industries .tl-head p { color: #aeb4bc; }
+.tl-ind__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.tl-ind__card { min-height: 200px; }
+.tl-ind__card {
+  position: relative; border-radius: 12px; overflow: hidden; min-height: 150px;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+  background: #23262a; color: #fff;
+  background-size: cover; background-position: center;
+}
+.tl-ind__card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,12,14,.15) 0%, rgba(10,12,14,.85) 100%); }
+.tl-ind__card > * { position: relative; z-index: 1; }
+.tl-ind__card h4 { color: #fff; font-size: 16px; }
+.tl-ind__card span { color: #d7dbe0; font-size: 12.5px; margin-top: 4px; }
+.tl-ind__card:hover { outline: 2px solid var(--tl-orange); }
+
+/* (Footer removed — the theme renders the global footer automatically.) */
+
+/* =========================================================================
+   RESPONSIVE
+   ========================================================================= */
+@media (max-width: 960px) {
+  .tl-section { padding: 56px 0; }
+  .tl-hero { padding: 96px 0 72px; }
+  .tl-hero h1 { font-size: 34px; }
+  .tl-calcform__grid, .tl-cmp__grid, .tl-cost, .tl-drivers, .tl-fits, .tl-hire__grid { grid-template-columns: 1fr; gap: 32px; }
+  .tl-ind__grid { grid-template-columns: repeat(2, 1fr); }
+  .tl-hire__img { min-height: 240px; }
+  .tl-fits-title { margin-top: 40px; }
+  .tl-table-wrap { overflow-x: auto; }
+  .tl-table { min-width: 640px; }
+}
+@media (max-width: 560px) {
+  .tl-head h2 { font-size: 26px; }
+  .tl-hire__row { grid-template-columns: 1fr; }
+  .tl-ind__grid { grid-template-columns: 1fr; }
+  .tl-fits, .tl-cost, .tl-hire__panel, .tl-cmp__card { padding: 28px; }
+}
+
+</style>
+
+<div class="tl-calc">
+
+  <!-- ============================ 1. HERO ============================ -->
+  <section class="tl-hero">
+    <div class="tl-wrap">
+      <nav class="tl-hero__crumbs" aria-label="Breadcrumb">
+        <a href="/" class="tl-crumb">Home</a>
+        <span class="tl-crumb__sep">→</span>
+        <a href="/calculators/" class="tl-crumb">Calculators</a>
+        <span class="tl-crumb__sep">→</span>
+        <span class="tl-crumb__current">{industry}</span>
+      </nav>
+      <h1>{hero_headline}</h1>
+      <p class="tl-hero__sub">{hero_subtext}</p>
+      <div class="tl-hero__cta">
+        <a href="#" class="tl-btn tl-btn--lg" data-open-quote>Get a Custom Quote →</a>
+        <span class="tl-hero__call">or call <a href="tel:{phone_link}">{phone}</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2. CALCULATOR FORM ======================= -->
+  <section class="tl-section tl-calcform">
+    <div class="tl-wrap">
+      <div class="tl-calcform__grid">
+
+        <!-- left: inputs -->
+        <div class="tl-calcform__col">
+          <h3>Your Inputs</h3>
+          <p class="tl-calcform__hint">Takes ~30 seconds</p>
+
+          <div class="tl-field">
+            <label for="tl-industry">Industry / Vertical</label>
+            <select id="tl-industry">
+              <option value="" selected disabled>{industry}</option>
+              <option>Construction</option>
+              <option>Engineering</option>
+              <option>Accounting &amp; Finance</option>
+              <option>Manufacturing</option>
+              <option>Legal</option>
+              <option>Executive Search</option>
+              <option>Tech / IT</option>
+              <option>HR</option>
+            </select>
+          </div>
+
+          <div class="tl-field">
+            <label for="tl-role">Role</label>
+            <select id="tl-role">
+              <option value="" selected disabled>Select a role</option>
+              <option>Individual Contributor</option>
+              <option>Manager</option>
+              <option>Director</option>
+              <option>VP / Executive</option>
+            </select>
+          </div>
+
+          <div class="tl-field">
+            <label for="tl-location">Location</label>
+            <select id="tl-location">
+              <option value="" selected disabled>Select a location</option>
+              <option>National (US)</option>
+              <option>San Francisco, CA</option>
+              <option>New York, NY</option>
+              <option>Remote</option>
+            </select>
+          </div>
+
+          <div class="tl-field">
+            <label>Number of hires</label>
+            <div class="tl-stepper">
+              <button type="button" data-step="-" aria-label="Decrease">–</button>
+              <input type="text" value="1" min="1" inputmode="numeric" aria-label="Number of hires" />
+              <button type="button" data-step="+" aria-label="Increase">+</button>
+            </div>
+          </div>
+
+          <p class="tl-moreopts">+ More options (vertical-specific conditional fields)</p>
+          <a href="#" class="tl-btn" data-open-quote>Get My Custom Estimate →</a>
+        </div>
+
+        <!-- right: how to use -->
+        <div class="tl-calcform__col">
+          <h3>How to Use This Calculator</h3>
+          <p class="tl-calcform__hint">3 quick steps. Takes ~30 seconds.</p>
+
+          <ol class="tl-steps">
+            <li>
+              <div class="tl-steps__num">01</div>
+              <div class="tl-steps__body">
+                <span class="tl-steps__t">Pick your industry and role</span>
+                <p class="tl-steps__d">Choose the vertical closest to the hire. The calculator adjusts fee benchmarks by industry.</p>
+              </div>
+            </li>
+            <li>
+              <div class="tl-steps__num">02</div>
+              <div class="tl-steps__body">
+                <span class="tl-steps__t">Set salary and engagement type</span>
+                <p class="tl-steps__d">Drag the salary slider. Pick contingency vs. retained based on how urgent the hire is.</p>
+              </div>
+            </li>
+            <li>
+              <div class="tl-steps__num">03</div>
+              <div class="tl-steps__body">
+                <span class="tl-steps__t">Submit your info to see the estimate</span>
+                <p class="tl-steps__d">We'll email your tailored quote and a recruiter will follow up within 1 business day.</p>
+              </div>
+            </li>
+          </ol>
+
+          <h4 class="tl-stdtitle">Typical Industry Standards</h4>
+          <p class="tl-stdsub">Industry benchmarks. Your specific quote arrives after submitting.</p>
+
+          <div class="tl-stat">
+            <span class="tl-stat__big">20-30%</span>
+            <span><span class="tl-stat__t">Industry-standard fee</span><br><span class="tl-stat__d">Of first year salary</span></span>
+          </div>
+          <div class="tl-stat">
+            <span class="tl-stat__big">30-45 days</span>
+            <span><span class="tl-stat__t">Industry time-to-fill</span><br><span class="tl-stat__d">Trueline averages 14 days</span></span>
+          </div>
+          <div class="tl-stat">
+            <span class="tl-stat__big">60 Days</span>
+            <span><span class="tl-stat__t">Replacement guarantee</span><br><span class="tl-stat__d">If it doesn't work, we'll replace the candidate</span></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== 3. COMPARISON =========================== -->
+  <section class="tl-section">
+    <div class="tl-wrap">
+      <div class="tl-head">
+        <h2>Hiring on Your Own vs Hiring with Trueline</h2>
+        <p>Two paths to the same hire. Here's the difference.</p>
+      </div>
+
+      <div class="tl-cmp__grid">
+        <!-- without -->
+        <div class="tl-cmp__card tl-cmp--bad">
+          <h3>Without Trueline</h3>
+          <p class="tl-cmp__sub">Hiring on your own</p>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Sourcing</span><p class="tl-cmp__desc">You post on Indeed and wait. Only the active 25% of candidates self-select. Top performers never see your listing.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Pipeline quality</span><p class="tl-cmp__desc">200 unqualified resumes hit your inbox. You spend 10+ hours phone-screening to find three plausible candidates.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Speed</span><p class="tl-cmp__desc">30-45 days from posting to start date. Often longer when candidates ghost or get counter-offers.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Risk</span><p class="tl-cmp__desc">Bad hire means starting over in six months and paying all the onboarding costs again.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Network</span><p class="tl-cmp__desc">You can only see candidates who are actively looking. The talent goldmine stays invisible to you.</p></span></div>
+        </div>
+        <!-- with -->
+        <div class="tl-cmp__card tl-cmp--good">
+          <h3>With Trueline</h3>
+          <p class="tl-cmp__sub">Recruiter in your industry</p>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Sourcing</span><p class="tl-cmp__desc">We call passive candidates directly, including evenings. We find the 75% of pros who aren't browsing job boards.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Pipeline quality</span><p class="tl-cmp__desc">Five pre-vetted candidates in your inbox. Skills checks, reference calls, and culture-fit screens already done.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Speed</span><p class="tl-cmp__desc">14 days average from intake to start. We close candidates and pre-empt counter-offers.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Risk</span><p class="tl-cmp__desc">Three-month placement guarantee. If it doesn't work, we re-search at no charge.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Network</span><p class="tl-cmp__desc">We know who's quietly looking, who's underperforming at competitors, and who's about to come available.</p></span></div>
+        </div>
+      </div>
+
+      <!-- cost box -->
+      <div class="tl-cost">
+        <div>
+          <h3>$120K Role Sitting Open for 10 Weeks vs. 2 Weeks</h3>
+          <p class="tl-cost__body">On your own: 10 weeks of empty seat costs ~$69K in lost productivity + ~$5K of your team's hiring time = $74K opportunity cost. With Trueline: a 2-week placement at a 25% fee = $30K, plus the seat is filled 8 weeks sooner. Net: you save ~$44K AND get the role filled fast.</p>
+          <a href="#" class="tl-btn" data-open-quote>Talk to a recruiter →</a>
+        </div>
+        <div>
+          <div class="tl-cost__stat"><div class="tl-cost__num">$74K</div><div class="tl-cost__cap">Cost if you hire on your own (10-week vacancy)</div></div>
+          <div class="tl-cost__stat"><div class="tl-cost__num">$30K</div><div class="tl-cost__cap">Trueline fee + 2-week placement</div></div>
+          <div class="tl-cost__stat"><div class="tl-cost__num">$44K</div><div class="tl-cost__cap">You save with Trueline</div></div>
+        </div>
+      </div>
+      <p class="tl-foot-note">Methodology: 3x daily-salary productivity multiplier per Harvard Business School research. Vacancy duration assumes 30-45 day industry average (BLS, AppleOne, Built In). Final figures will reflect Trueline-specific role and revenue benchmarks once confirmed.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 4. FEE TABLES ============================ -->
+  <section class="tl-section tl-fees" style="background:var(--tl-bg);">
+    <div class="tl-wrap">
+      <div class="tl-head">
+        <h2>How the Recruiter Fee Works</h2>
+        <p>Five common fee structures. The calculator handles all of them — here's the breakdown.</p>
+      </div>
+      <div class="tl-table-wrap">
+        <table class="tl-table">
+          <thead><tr><th>Fee Type</th><th>Typical Range</th><th>How It's Paid</th><th>Best For</th></tr></thead>
+          <tbody>
+            <tr><td>Contingency</td><td>15-30% Y1 salary</td><td>Only on successful hire</td><td>Standard mid-market roles</td></tr>
+            <tr><td>Retained</td><td>25-35% Y1 total comp</td><td>Thirds: engagement / interim / completion</td><td>Executive + hard-to-fill</td></tr>
+            <tr><td>Retained Minimum</td><td>$80K — $150K+ floor</td><td>Applies regardless of salary</td><td>Korn Ferry-style large firms</td></tr>
+            <tr><td>Flat Fee</td><td>$5K — $20K / placement</td><td>Agreed upfront</td><td>Volume hiring, predictable budget</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tl-head">
+        <h2>Typical Recruiter Fees by Industry</h2>
+        <p>Industry benchmarks sourced from BLS, Robert Half Salary Guide, ASA, and Hunt Scanlon.</p>
+      </div>
+      <div class="tl-table-wrap">
+        <table class="tl-table">
+          <thead><tr><th>Industry</th><th>Typical Fee %</th><th>Fee on $100K Hire</th><th>Time-to-Fill</th></tr></thead>
+          <tbody>
+            <tr><td>Construction</td><td>20-25%</td><td>$18K — $25K</td><td>30-45 days</td></tr>
+            <tr><td>Engineering</td><td>22-30%</td><td>$22K — $32K</td><td>35-55 days</td></tr>
+            <tr><td>Accounting &amp; Finance</td><td>20-28%</td><td>$20K — $28K</td><td>25-40 days</td></tr>
+            <tr><td>Manufacturing</td><td>20-25%</td><td>$18K — $25K</td><td>28-45 days</td></tr>
+            <tr><td>Legal</td><td>25-30%</td><td>$25K — $33K</td><td>45-75 days</td></tr>
+            <tr><td>Executive Search</td><td>25-30% (+ minimum)</td><td>$80K minimum</td><td>90-180 days</td></tr>
+            <tr><td>Tech / IT</td><td>25-30%</td><td>$25K — $35K</td><td>30-50 days</td></tr>
+            <tr><td>HR</td><td>20-28%</td><td>$20K — $28K</td><td>30-45 days</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tl-cite">Citations: BLS OES · Robert Half Salary Guide 2026 · American Staffing Association (ASA) · Hunt Scanlon Media</p>
+    </div>
+  </section>
+
+  <!-- ============= 5. FEE DRIVERS + HOW TRUELINE FITS =============== -->
+  <section class="tl-section">
+    <div class="tl-wrap">
+      <div class="tl-head">
+        <h2>What Drives Your <span class="tl-accent">Fee</span></h2>
+        <p>Three factors that swing the range — plus {industry}-specific drivers we factor into your quote.</p>
+      </div>
+
+      <div class="tl-drivers">
+        <div class="tl-driver">
+          <div class="tl-driver__ico"><img src="https://wearetrueline.com/wp-content/uploads/2026/06/seniority-icon.png" alt="" width="26" height="26" /></div>
+          <h3>Seniority</h3>
+          <p>Executive roles push fees to 35%+, even higher in niche searches. Individual-contributor roles sit near 20%. Mid-level lands in the middle of the range.</p>
+        </div>
+        <div class="tl-driver">
+          <div class="tl-driver__ico"><img src="https://wearetrueline.com/wp-content/uploads/2026/06/industry-demand-icon.png" alt="" width="26" height="26" /></div>
+          <h3>Industry demand</h3>
+          <p>High-demand markets command a premium. Specialized verticals with niche, hard-to-source skills push the fee toward the top of the range.</p>
+        </div>
+        <div class="tl-driver">
+          <div class="tl-driver__ico"><img src="https://wearetrueline.com/wp-content/uploads/2026/06/location-icon.png" alt="" width="26" height="26" /></div>
+          <h3>Location</h3>
+          <p>High cost-of-living metros (SF, NYC) lift total comp and therefore the fee. {fee_driver_industry}</p>
+        </div>
+      </div>
+
+      <h2 class="tl-fits-title">How Trueline Fits</h2>
+
+      <div class="tl-fits">
+        <div class="tl-fits__main">
+          <h3>Transparent Pricing. Fast Placement. Guaranteed.</h3>
+          <p class="tl-fits__body">Trueline tailors fees to each engagement and places top talent in 14 days on average — well below industry averages. Submit a role to get your specific quote, no commitment required. We back every placement with a 3-month guarantee.</p>
+          <a href="#" class="tl-btn" data-open-quote>Talk to a recruiter →</a>
+        </div>
+        <div>
+          <div class="tl-fits__stat"><div class="tl-fits__num">500+</div><div class="tl-fits__cap">Placements completed</div></div>
+          <div class="tl-fits__stat"><div class="tl-fits__num">3 mo</div><div class="tl-fits__cap">Placement guarantee</div></div>
+          <div class="tl-fits__stat"><div class="tl-fits__num">Tailored</div><div class="tl-fits__cap">To your engagement</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== 6. FAQ ============================= -->
+  <section class="tl-section tl-faq">
+    <div class="tl-wrap">
+      <div class="tl-head"><h2>Frequently Asked Questions</h2></div>
+      <div class="tl-faq__list">
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">What is a typical recruiter fee?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Most contingency recruiters charge 15-30% of the hire's first-year base salary, with 20-25% being the mid-market norm. Retained and executive searches run higher, often 25-35% of total comp or a fixed minimum.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">Who pays recruiter fees — employer or candidate?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>The employer pays the fee in virtually all professional placements. Candidates are never charged to be placed in a role.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">What's the difference between contingency and retained search?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Contingency means you only pay if a hire is made. Retained means you pay in stages (often thirds) for an exclusive, dedicated search — typical for executive or hard-to-fill roles.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">How long does the placement guarantee last?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Trueline backs every placement with a 3-month guarantee. If the hire doesn't work out, we re-search the role at no additional charge.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">Can I negotiate recruiter fees?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Yes. Fees are often negotiable based on volume, exclusivity, and engagement type. Multiple hires or a retained relationship typically unlock better rates.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">How much do recruitment agencies charge for contractors vs. direct hire?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Contract staffing is usually billed as an hourly markup (roughly $75-$150/hr depending on role), while direct-hire is a one-time percentage of first-year salary.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">What's the typical time-to-fill for a role?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Industry average is 30-45 days, longer for executive or specialized roles. Trueline averages 14 days from intake to start.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">How are executive search fees different from standard recruiter fees?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Executive search is typically retained at 25-35% of total comp (or a fixed minimum of $80K+), reflecting the longer, more confidential, and more strategic nature of leadership searches.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 7. READY TO HIRE (HubSpot) ================= -->
+  <section class="tl-section tl-hire">
+    <div class="tl-wrap">
+      <div class="tl-hire__grid">
+        <div class="tl-hire__img" role="img" aria-label="Recruiter shaking hands with a client"></div>
+        <div class="tl-hire__panel">
+          <h2>Ready to Hire?</h2>
+          <p>Tell us about the role. A Trueline recruiter will reply with a tailored quote within 1 business day.</p>
+          <form class="tl-hire__form" novalidate>
+            <div class="tl-hire__row">
+              <input type="text" name="fullname" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Work email" required />
+            </div>
+            <div class="tl-hire__row">
+              <input type="text" name="role_hiring_for" placeholder="Role you're hiring for" />
+              <input type="tel" name="phone" placeholder="Phone (optional)" />
+            </div>
+            <textarea name="message" placeholder="Brief context (urgency, must-haves, location)"></textarea>
+            <input type="hidden" name="industry_interest" value="{industry}" />
+            <button type="submit" class="tl-btn" style="margin-top:14px;">Get My Tailored Quote →</button>
+            <p class="tl-hire__msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8. CALCULATORS BY INDUSTRY =================== -->
+  <section class="tl-section tl-industries">
+    <div class="tl-wrap">
+      <div class="tl-head">
+        <h2>Calculators by Industry</h2>
+        <p>Interactive industry tools — pick an industry; each calculator uses the same calc engine.</p>
+      </div>
+      <div class="tl-ind__grid">
+        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/construction-industry-card.png');"><h4>Construction</h4><span>Typical fee 20-25%</span></a>
+        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/accounting-finance-industry-card.png');"><h4>Accounting &amp; Finance</h4><span>Typical fee 20-28%</span></a>
+        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/legal-industry-card.png');"><h4>Legal</h4><span>Typical fee 25-30%</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer intentionally omitted — the theme appends the global footer automatically. -->
+
+</div><!-- /.tl-calc -->
+
+<script>
+/* =========================================================================
+   Trueline — Calculator Page interactions
+   - FAQ accordion
+   - Number-of-hires stepper
+   - "Get My Custom Estimate" => clickbait, opens a popup (Popup Maker) later
+   - "Ready to Hire?" native form => HubSpot Forms API submit
+   IIFE + scoped to .tl-calc so it can be dropped into any page safely.
+   ========================================================================= */
+(function () {
+  "use strict";
+
+  /* -----------------------------------------------------------------
+     CONFIG — fill these in (see SETUP.md).
+     Find your IDs in HubSpot: Settings > Account Setup > Account Defaults
+     (Hub/Portal ID) and the embed code of the form (Form GUID).
+  ----------------------------------------------------------------- */
+  var HUBSPOT = {
+    portalId: "__HUBSPOT_PORTAL_ID__",
+    formGuid: "__HUBSPOT_FORM_GUID__",
+    region: "na1" // "na1" (US) or "eu1"
+  };
+
+  // Popup Maker popup ID that the clickbait calculator should open.
+  // Set this to the numeric ID of the popup you create in Popup Maker.
+  var QUOTE_POPUP_ID = "__POPUP_ID__";
+
+  function ready(fn) {
+    if (document.readyState !== "loading") fn();
+    else document.addEventListener("DOMContentLoaded", fn);
+  }
+
+  ready(function () {
+    var roots = document.querySelectorAll(".tl-calc");
+    roots.forEach(function (root) {
+      initAccordion(root);
+      initStepper(root);
+      initQuotePopups(root);
+      initHubspotForm(root);
+    });
+  });
+
+  /* ---- FAQ accordion -------------------------------------------------- */
+  function initAccordion(root) {
+    root.querySelectorAll(".tl-acc").forEach(function (acc) {
+      var btn = acc.querySelector(".tl-acc__q");
+      if (!btn) return;
+      btn.addEventListener("click", function () {
+        var open = acc.classList.contains("is-open");
+        // close siblings for a clean single-open accordion
+        root.querySelectorAll(".tl-acc.is-open").forEach(function (o) {
+          if (o !== acc) o.classList.remove("is-open");
+        });
+        acc.classList.toggle("is-open", !open);
+        btn.setAttribute("aria-expanded", String(!open));
+      });
+    });
+  }
+
+  /* ---- Number-of-hires stepper --------------------------------------- */
+  function initStepper(root) {
+    root.querySelectorAll(".tl-stepper").forEach(function (s) {
+      var input = s.querySelector("input");
+      var dec = s.querySelector("[data-step='-']");
+      var inc = s.querySelector("[data-step='+']");
+      var min = parseInt(input.getAttribute("min") || "1", 10);
+      function set(v) { input.value = Math.max(min, v); }
+      if (dec) dec.addEventListener("click", function () { set(parseInt(input.value || min, 10) - 1); });
+      if (inc) inc.addEventListener("click", function () { set(parseInt(input.value || min, 10) + 1); });
+    });
+  }
+
+  /* ---- Clickbait calculator => open popup ---------------------------- */
+  // The calculator inputs are intentionally not used for a live estimate.
+  // Any element with [data-open-quote] opens the quote popup instead.
+  function initQuotePopups(root) {
+    root.querySelectorAll("[data-open-quote]").forEach(function (el) {
+      el.addEventListener("click", function (e) {
+        e.preventDefault();
+        openQuotePopup();
+      });
+    });
+  }
+
+  function openQuotePopup() {
+    // Popup Maker: PUM.open(id). Falls back gracefully until QUOTE_POPUP_ID is set.
+    if (window.PUM && QUOTE_POPUP_ID && QUOTE_POPUP_ID.indexOf("__") === -1) {
+      window.PUM.open(QUOTE_POPUP_ID);
+      return;
+    }
+    // Fallback before the popup is wired: scroll to the Ready-to-Hire form.
+    var hire = document.querySelector(".tl-hire");
+    if (hire) hire.scrollIntoView({ behavior: "smooth" });
+  }
+
+  /* ---- Ready to Hire => HubSpot Forms API ---------------------------- */
+  function initHubspotForm(root) {
+    var form = root.querySelector(".tl-hire__form");
+    if (!form) return;
+    var msg = root.querySelector(".tl-hire__msg");
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (HUBSPOT.portalId.indexOf("__") !== -1 || HUBSPOT.formGuid.indexOf("__") !== -1) {
+        showMsg(msg, "Form not configured yet — add your HubSpot portal & form IDs.", false);
+        return;
+      }
+
+      var btn = form.querySelector("button[type='submit']");
+      var orig = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+
+      var fields = [];
+      form.querySelectorAll("[name]").forEach(function (el) {
+        if (el.value) fields.push({ name: el.getAttribute("name"), value: el.value });
+      });
+
+      var payload = {
+        fields: fields,
+        context: {
+          pageUri: window.location.href,
+          pageName: document.title
+        }
+      };
+
+      var url = "https://api.hsforms.com/submissions/v3/integration/submit/" +
+        HUBSPOT.portalId + "/" + HUBSPOT.formGuid;
+
+      fetch(url, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      })
+        .then(function (r) { return r.json().then(function (b) { return { ok: r.ok, body: b }; }); })
+        .then(function (res) {
+          if (res.ok) {
+            form.reset();
+            showMsg(msg, "Thanks! A Trueline recruiter will reply within 1 business day.", true);
+          } else {
+            var detail = res.body && res.body.message ? res.body.message : "Please try again.";
+            showMsg(msg, "Something went wrong: " + detail, false);
+          }
+        })
+        .catch(function () { showMsg(msg, "Network error — please try again.", false); })
+        .finally(function () { if (btn) { btn.disabled = false; btn.textContent = orig; } });
+    });
+  }
+
+  function showMsg(msg, text, ok) {
+    if (!msg) return;
+    msg.textContent = text;
+    msg.classList.remove("is-ok", "is-err");
+    msg.classList.add(ok ? "is-ok" : "is-err");
+  }
+})();
+
+</script>

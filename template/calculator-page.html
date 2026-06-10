@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<!--
+  Trueline — Calculator Page LPagery template (standalone preview).
+  Open this file in a browser to verify the design.
+  For WordPress, use dist/calculator-page.combined.html (built via build.sh),
+  which inlines the CSS + JS into a single pasteable block.
+
+  LPagery placeholders use single curly braces and map to CSV column headers:
+    {industry}            e.g. "Construction"
+    {hero_headline}       full H1
+    {hero_subtext}        hero paragraph
+    {phone}               display phone, e.g. "(800) 201-0906"
+    {phone_link}          tel: digits, e.g. "8002010906"
+    {typical_fee_pct}     e.g. "20-25%"
+    {fee_on_100k}         e.g. "$18K — $25K"
+    {time_to_fill}        e.g. "30-45 days"
+    {fee_driver_industry} vertical-specific fee-driver sentence
+  Static asset path token: https://wearetrueline.com/wp-content/uploads/2026/06  (find/replace with your uploads URL)
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{hero_headline}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./calculator-page.css" />
+</head>
+<body>
+
+<div class="tl-calc">
+
+  <!-- ============================ 1. HERO ============================ -->
+  <section class="tl-hero">
+    <div class="tl-wrap">
+      <nav class="tl-hero__crumbs" aria-label="Breadcrumb">
+        <a href="/" class="tl-crumb">Home</a>
+        <span class="tl-crumb__sep">→</span>
+        <a href="/calculators/" class="tl-crumb">Calculators</a>
+        <span class="tl-crumb__sep">→</span>
+        <span class="tl-crumb__current">{industry}</span>
+      </nav>
+      <h1>{hero_headline}</h1>
+      <p class="tl-hero__sub">{hero_subtext}</p>
+      <div class="tl-hero__cta">
+        <a href="#" class="tl-btn tl-btn--lg" data-open-quote>Get a Custom Quote →</a>
+        <span class="tl-hero__call">or call <a href="tel:{phone_link}">{phone}</a></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== 2. CALCULATOR FORM ======================= -->
+  <section class="tl-section tl-calcform">
+    <div class="tl-wrap">
+      <div class="tl-calcform__grid">
+
+        <!-- left: inputs -->
+        <div class="tl-calcform__col">
+          <h3>Your Inputs</h3>
+          <p class="tl-calcform__hint">Takes ~30 seconds</p>
+
+          <div class="tl-field">
+            <label for="tl-industry">Industry / Vertical</label>
+            <select id="tl-industry">
+              <option value="" selected disabled>{industry}</option>
+              <option>Construction</option>
+              <option>Engineering</option>
+              <option>Accounting &amp; Finance</option>
+              <option>Manufacturing</option>
+              <option>Legal</option>
+              <option>Executive Search</option>
+              <option>Tech / IT</option>
+              <option>HR</option>
+            </select>
+          </div>
+
+          <div class="tl-field">
+            <label for="tl-role">Role</label>
+            <select id="tl-role">
+              <option value="" selected disabled>Select a role</option>
+              <option>Individual Contributor</option>
+              <option>Manager</option>
+              <option>Director</option>
+              <option>VP / Executive</option>
+            </select>
+          </div>
+
+          <div class="tl-field">
+            <label for="tl-location">Location</label>
+            <select id="tl-location">
+              <option value="" selected disabled>Select a location</option>
+              <option>National (US)</option>
+              <option>San Francisco, CA</option>
+              <option>New York, NY</option>
+              <option>Remote</option>
+            </select>
+          </div>
+
+          <div class="tl-field">
+            <label>Number of hires</label>
+            <div class="tl-stepper">
+              <button type="button" data-step="-" aria-label="Decrease">–</button>
+              <input type="text" value="1" min="1" inputmode="numeric" aria-label="Number of hires" />
+              <button type="button" data-step="+" aria-label="Increase">+</button>
+            </div>
+          </div>
+
+          <p class="tl-moreopts">+ More options (vertical-specific conditional fields)</p>
+          <a href="#" class="tl-btn" data-open-quote>Get My Custom Estimate →</a>
+        </div>
+
+        <!-- right: how to use -->
+        <div class="tl-calcform__col">
+          <h3>How to Use This Calculator</h3>
+          <p class="tl-calcform__hint">3 quick steps. Takes ~30 seconds.</p>
+
+          <ol class="tl-steps">
+            <li>
+              <div class="tl-steps__num">01</div>
+              <div class="tl-steps__body">
+                <span class="tl-steps__t">Pick your industry and role</span>
+                <p class="tl-steps__d">Choose the vertical closest to the hire. The calculator adjusts fee benchmarks by industry.</p>
+              </div>
+            </li>
+            <li>
+              <div class="tl-steps__num">02</div>
+              <div class="tl-steps__body">
+                <span class="tl-steps__t">Set salary and engagement type</span>
+                <p class="tl-steps__d">Drag the salary slider. Pick contingency vs. retained based on how urgent the hire is.</p>
+              </div>
+            </li>
+            <li>
+              <div class="tl-steps__num">03</div>
+              <div class="tl-steps__body">
+                <span class="tl-steps__t">Submit your info to see the estimate</span>
+                <p class="tl-steps__d">We'll email your tailored quote and a recruiter will follow up within 1 business day.</p>
+              </div>
+            </li>
+          </ol>
+
+          <h4 class="tl-stdtitle">Typical Industry Standards</h4>
+          <p class="tl-stdsub">Industry benchmarks. Your specific quote arrives after submitting.</p>
+
+          <div class="tl-stat">
+            <span class="tl-stat__big">20-30%</span>
+            <span><span class="tl-stat__t">Industry-standard fee</span><br><span class="tl-stat__d">Of first year salary</span></span>
+          </div>
+          <div class="tl-stat">
+            <span class="tl-stat__big">30-45 days</span>
+            <span><span class="tl-stat__t">Industry time-to-fill</span><br><span class="tl-stat__d">Trueline averages 14 days</span></span>
+          </div>
+          <div class="tl-stat">
+            <span class="tl-stat__big">60 Days</span>
+            <span><span class="tl-stat__t">Replacement guarantee</span><br><span class="tl-stat__d">If it doesn't work, we'll replace the candidate</span></span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================== 3. COMPARISON =========================== -->
+  <section class="tl-section">
+    <div class="tl-wrap">
+      <div class="tl-head">
+        <h2>Hiring on Your Own vs Hiring with Trueline</h2>
+        <p>Two paths to the same hire. Here's the difference.</p>
+      </div>
+
+      <div class="tl-cmp__grid">
+        <!-- without -->
+        <div class="tl-cmp__card tl-cmp--bad">
+          <h3>Without Trueline</h3>
+          <p class="tl-cmp__sub">Hiring on your own</p>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Sourcing</span><p class="tl-cmp__desc">You post on Indeed and wait. Only the active 25% of candidates self-select. Top performers never see your listing.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Pipeline quality</span><p class="tl-cmp__desc">200 unqualified resumes hit your inbox. You spend 10+ hours phone-screening to find three plausible candidates.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Speed</span><p class="tl-cmp__desc">30-45 days from posting to start date. Often longer when candidates ghost or get counter-offers.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Risk</span><p class="tl-cmp__desc">Bad hire means starting over in six months and paying all the onboarding costs again.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✗</span><span><span class="tl-cmp__label">Network</span><p class="tl-cmp__desc">You can only see candidates who are actively looking. The talent goldmine stays invisible to you.</p></span></div>
+        </div>
+        <!-- with -->
+        <div class="tl-cmp__card tl-cmp--good">
+          <h3>With Trueline</h3>
+          <p class="tl-cmp__sub">Recruiter in your industry</p>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Sourcing</span><p class="tl-cmp__desc">We call passive candidates directly, including evenings. We find the 75% of pros who aren't browsing job boards.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Pipeline quality</span><p class="tl-cmp__desc">Five pre-vetted candidates in your inbox. Skills checks, reference calls, and culture-fit screens already done.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Speed</span><p class="tl-cmp__desc">14 days average from intake to start. We close candidates and pre-empt counter-offers.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Risk</span><p class="tl-cmp__desc">Three-month placement guarantee. If it doesn't work, we re-search at no charge.</p></span></div>
+          <div class="tl-cmp__item"><span class="tl-cmp__mark">✓</span><span><span class="tl-cmp__label">Network</span><p class="tl-cmp__desc">We know who's quietly looking, who's underperforming at competitors, and who's about to come available.</p></span></div>
+        </div>
+      </div>
+
+      <!-- cost box -->
+      <div class="tl-cost">
+        <div>
+          <h3>$120K Role Sitting Open for 10 Weeks vs. 2 Weeks</h3>
+          <p class="tl-cost__body">On your own: 10 weeks of empty seat costs ~$69K in lost productivity + ~$5K of your team's hiring time = $74K opportunity cost. With Trueline: a 2-week placement at a 25% fee = $30K, plus the seat is filled 8 weeks sooner. Net: you save ~$44K AND get the role filled fast.</p>
+          <a href="#" class="tl-btn" data-open-quote>Talk to a recruiter →</a>
+        </div>
+        <div>
+          <div class="tl-cost__stat"><div class="tl-cost__num">$74K</div><div class="tl-cost__cap">Cost if you hire on your own (10-week vacancy)</div></div>
+          <div class="tl-cost__stat"><div class="tl-cost__num">$30K</div><div class="tl-cost__cap">Trueline fee + 2-week placement</div></div>
+          <div class="tl-cost__stat"><div class="tl-cost__num">$44K</div><div class="tl-cost__cap">You save with Trueline</div></div>
+        </div>
+      </div>
+      <p class="tl-foot-note">Methodology: 3x daily-salary productivity multiplier per Harvard Business School research. Vacancy duration assumes 30-45 day industry average (BLS, AppleOne, Built In). Final figures will reflect Trueline-specific role and revenue benchmarks once confirmed.</p>
+    </div>
+  </section>
+
+  <!-- ===================== 4. FEE TABLES ============================ -->
+  <section class="tl-section tl-fees" style="background:var(--tl-bg);">
+    <div class="tl-wrap">
+      <div class="tl-head">
+        <h2>How the Recruiter Fee Works</h2>
+        <p>Five common fee structures. The calculator handles all of them — here's the breakdown.</p>
+      </div>
+      <div class="tl-table-wrap">
+        <table class="tl-table">
+          <thead><tr><th>Fee Type</th><th>Typical Range</th><th>How It's Paid</th><th>Best For</th></tr></thead>
+          <tbody>
+            <tr><td>Contingency</td><td>15-30% Y1 salary</td><td>Only on successful hire</td><td>Standard mid-market roles</td></tr>
+            <tr><td>Retained</td><td>25-35% Y1 total comp</td><td>Thirds: engagement / interim / completion</td><td>Executive + hard-to-fill</td></tr>
+            <tr><td>Retained Minimum</td><td>$80K — $150K+ floor</td><td>Applies regardless of salary</td><td>Korn Ferry-style large firms</td></tr>
+            <tr><td>Flat Fee</td><td>$5K — $20K / placement</td><td>Agreed upfront</td><td>Volume hiring, predictable budget</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="tl-head">
+        <h2>Typical Recruiter Fees by Industry</h2>
+        <p>Industry benchmarks sourced from BLS, Robert Half Salary Guide, ASA, and Hunt Scanlon.</p>
+      </div>
+      <div class="tl-table-wrap">
+        <table class="tl-table">
+          <thead><tr><th>Industry</th><th>Typical Fee %</th><th>Fee on $100K Hire</th><th>Time-to-Fill</th></tr></thead>
+          <tbody>
+            <tr><td>Construction</td><td>20-25%</td><td>$18K — $25K</td><td>30-45 days</td></tr>
+            <tr><td>Engineering</td><td>22-30%</td><td>$22K — $32K</td><td>35-55 days</td></tr>
+            <tr><td>Accounting &amp; Finance</td><td>20-28%</td><td>$20K — $28K</td><td>25-40 days</td></tr>
+            <tr><td>Manufacturing</td><td>20-25%</td><td>$18K — $25K</td><td>28-45 days</td></tr>
+            <tr><td>Legal</td><td>25-30%</td><td>$25K — $33K</td><td>45-75 days</td></tr>
+            <tr><td>Executive Search</td><td>25-30% (+ minimum)</td><td>$80K minimum</td><td>90-180 days</td></tr>
+            <tr><td>Tech / IT</td><td>25-30%</td><td>$25K — $35K</td><td>30-50 days</td></tr>
+            <tr><td>HR</td><td>20-28%</td><td>$20K — $28K</td><td>30-45 days</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="tl-cite">Citations: BLS OES · Robert Half Salary Guide 2026 · American Staffing Association (ASA) · Hunt Scanlon Media</p>
+    </div>
+  </section>
+
+  <!-- ============= 5. FEE DRIVERS + HOW TRUELINE FITS =============== -->
+  <section class="tl-section">
+    <div class="tl-wrap">
+      <div class="tl-head">
+        <h2>What Drives Your <span class="tl-accent">Fee</span></h2>
+        <p>Three factors that swing the range — plus {industry}-specific drivers we factor into your quote.</p>
+      </div>
+
+      <div class="tl-drivers">
+        <div class="tl-driver">
+          <div class="tl-driver__ico"><img src="https://wearetrueline.com/wp-content/uploads/2026/06/seniority-icon.png" alt="" width="26" height="26" /></div>
+          <h3>Seniority</h3>
+          <p>Executive roles push fees to 35%+, even higher in niche searches. Individual-contributor roles sit near 20%. Mid-level lands in the middle of the range.</p>
+        </div>
+        <div class="tl-driver">
+          <div class="tl-driver__ico"><img src="https://wearetrueline.com/wp-content/uploads/2026/06/industry-demand-icon.png" alt="" width="26" height="26" /></div>
+          <h3>Industry demand</h3>
+          <p>High-demand markets command a premium. Specialized verticals with niche, hard-to-source skills push the fee toward the top of the range.</p>
+        </div>
+        <div class="tl-driver">
+          <div class="tl-driver__ico"><img src="https://wearetrueline.com/wp-content/uploads/2026/06/location-icon.png" alt="" width="26" height="26" /></div>
+          <h3>Location</h3>
+          <p>High cost-of-living metros (SF, NYC) lift total comp and therefore the fee. {fee_driver_industry}</p>
+        </div>
+      </div>
+
+      <h2 class="tl-fits-title">How Trueline Fits</h2>
+
+      <div class="tl-fits">
+        <div class="tl-fits__main">
+          <h3>Transparent Pricing. Fast Placement. Guaranteed.</h3>
+          <p class="tl-fits__body">Trueline tailors fees to each engagement and places top talent in 14 days on average — well below industry averages. Submit a role to get your specific quote, no commitment required. We back every placement with a 3-month guarantee.</p>
+          <a href="#" class="tl-btn" data-open-quote>Talk to a recruiter →</a>
+        </div>
+        <div>
+          <div class="tl-fits__stat"><div class="tl-fits__num">500+</div><div class="tl-fits__cap">Placements completed</div></div>
+          <div class="tl-fits__stat"><div class="tl-fits__num">3 mo</div><div class="tl-fits__cap">Placement guarantee</div></div>
+          <div class="tl-fits__stat"><div class="tl-fits__num">Tailored</div><div class="tl-fits__cap">To your engagement</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================== 6. FAQ ============================= -->
+  <section class="tl-section tl-faq">
+    <div class="tl-wrap">
+      <div class="tl-head"><h2>Frequently Asked Questions</h2></div>
+      <div class="tl-faq__list">
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">What is a typical recruiter fee?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Most contingency recruiters charge 15-30% of the hire's first-year base salary, with 20-25% being the mid-market norm. Retained and executive searches run higher, often 25-35% of total comp or a fixed minimum.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">Who pays recruiter fees — employer or candidate?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>The employer pays the fee in virtually all professional placements. Candidates are never charged to be placed in a role.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">What's the difference between contingency and retained search?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Contingency means you only pay if a hire is made. Retained means you pay in stages (often thirds) for an exclusive, dedicated search — typical for executive or hard-to-fill roles.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">How long does the placement guarantee last?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Trueline backs every placement with a 3-month guarantee. If the hire doesn't work out, we re-search the role at no additional charge.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">Can I negotiate recruiter fees?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Yes. Fees are often negotiable based on volume, exclusivity, and engagement type. Multiple hires or a retained relationship typically unlock better rates.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">How much do recruitment agencies charge for contractors vs. direct hire?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Contract staffing is usually billed as an hourly markup (roughly $75-$150/hr depending on role), while direct-hire is a one-time percentage of first-year salary.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">What's the typical time-to-fill for a role?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Industry average is 30-45 days, longer for executive or specialized roles. Trueline averages 14 days from intake to start.</p></div></div>
+        <div class="tl-acc"><button class="tl-acc__q" aria-expanded="false">How are executive search fees different from standard recruiter fees?<span class="tl-acc__sign">+</span></button><div class="tl-acc__a"><p>Executive search is typically retained at 25-35% of total comp (or a fixed minimum of $80K+), reflecting the longer, more confidential, and more strategic nature of leadership searches.</p></div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =================== 7. READY TO HIRE (HubSpot) ================= -->
+  <section class="tl-section tl-hire">
+    <div class="tl-wrap">
+      <div class="tl-hire__grid">
+        <div class="tl-hire__img" role="img" aria-label="Recruiter shaking hands with a client"></div>
+        <div class="tl-hire__panel">
+          <h2>Ready to Hire?</h2>
+          <p>Tell us about the role. A Trueline recruiter will reply with a tailored quote within 1 business day.</p>
+          <form class="tl-hire__form" novalidate>
+            <div class="tl-hire__row">
+              <input type="text" name="fullname" placeholder="Full name" required />
+              <input type="email" name="email" placeholder="Work email" required />
+            </div>
+            <div class="tl-hire__row">
+              <input type="text" name="role_hiring_for" placeholder="Role you're hiring for" />
+              <input type="tel" name="phone" placeholder="Phone (optional)" />
+            </div>
+            <textarea name="message" placeholder="Brief context (urgency, must-haves, location)"></textarea>
+            <input type="hidden" name="industry_interest" value="{industry}" />
+            <button type="submit" class="tl-btn" style="margin-top:14px;">Get My Tailored Quote →</button>
+            <p class="tl-hire__msg" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 8. CALCULATORS BY INDUSTRY =================== -->
+  <section class="tl-section tl-industries">
+    <div class="tl-wrap">
+      <div class="tl-head">
+        <h2>Calculators by Industry</h2>
+        <p>Interactive industry tools — pick an industry; each calculator uses the same calc engine.</p>
+      </div>
+      <div class="tl-ind__grid">
+        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/construction-industry-card.png');"><h4>Construction</h4><span>Typical fee 20-25%</span></a>
+        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/accounting-finance-industry-card.png');"><h4>Accounting &amp; Finance</h4><span>Typical fee 20-28%</span></a>
+        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/legal-industry-card.png');"><h4>Legal</h4><span>Typical fee 25-30%</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer intentionally omitted — the theme appends the global footer automatically. -->
+
+</div><!-- /.tl-calc -->
+
+<script src="./calculator-page.js"></script>
+</body>
+</html>

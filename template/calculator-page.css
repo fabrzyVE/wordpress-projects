@@ -1,0 +1,312 @@
+/* =========================================================================
+   Trueline — Calculator Page (LPagery template)
+   Self-contained, scoped under .tl-calc so it won't collide with theme/Elementor.
+   Brand font: Montserrat. Accent: #F8A458.
+   ========================================================================= */
+
+.tl-calc *,
+.tl-calc *::before,
+.tl-calc *::after { box-sizing: border-box; }
+
+.tl-calc {
+  --tl-orange: #F8A458;
+  --tl-orange-dark: #ef9442;
+  --tl-ink: #1b2433;        /* headings */
+  --tl-body: #5b6675;       /* body text */
+  --tl-muted: #97a1b0;      /* small/muted */
+  --tl-bg: #f5f8fa;         /* light section bg */
+  --tl-card: #ffffff;
+  --tl-border: #e7ecf1;
+  --tl-dark: #1f2020;       /* dark boxes */
+  --tl-radius: 14px;
+  --tl-shadow: 0 12px 40px rgba(20, 35, 60, .06);
+  --tl-maxw: 1120px;
+
+  font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  color: var(--tl-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  background: #fff;
+
+  /* Full-bleed: span the viewport even when dropped inside a constrained
+     Elementor/theme container (which otherwise caps it at ~80%). */
+  width: 100vw;
+  max-width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+  overflow-x: hidden;
+}
+
+.tl-calc h1, .tl-calc h2, .tl-calc h3, .tl-calc h4 {
+  color: var(--tl-ink);
+  margin: 0;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.tl-calc p { margin: 0; }
+.tl-calc a { color: inherit; text-decoration: none; }
+
+.tl-wrap { max-width: var(--tl-maxw); margin: 0 auto; padding: 0 24px; }
+.tl-section { padding: 80px 0; }
+.tl-eyebrow { color: var(--tl-muted); font-size: 13px; }
+
+/* ---- Section heading block (centered) ---- */
+.tl-head { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+.tl-head h2 { font-size: 34px; }
+.tl-head p { margin-top: 12px; color: var(--tl-body); font-size: 16px; }
+.tl-accent { color: var(--tl-orange); }
+
+/* ---- Buttons ---- */
+.tl-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: var(--tl-orange); color: #fff !important;
+  font-weight: 600; font-size: 15px;
+  padding: 14px 26px; border-radius: 10px; border: 0; cursor: pointer;
+  transition: background .15s ease, transform .15s ease;
+  font-family: inherit;
+}
+.tl-btn:hover { background: var(--tl-orange-dark); transform: translateY(-1px); }
+.tl-btn--lg { padding: 16px 30px; font-size: 16px; }
+
+/* =========================================================================
+   1. HERO
+   ========================================================================= */
+.tl-hero {
+  position: relative;
+  color: #fff;
+  padding: 130px 0 110px;
+  background: #0a0d10;
+  background-image: linear-gradient(90deg, rgba(8,11,14,.92) 0%, rgba(8,11,14,.72) 55%, rgba(8,11,14,.45) 100%),
+                    url("https://wearetrueline.com/wp-content/uploads/2026/06/hero-bg.png");
+  background-size: cover;
+  background-position: center;
+}
+.tl-hero__crumbs { font-size: 13px; margin-bottom: 22px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+.tl-crumb { color: var(--tl-orange); font-weight: 600; }
+.tl-crumb:hover { text-decoration: underline; }
+.tl-crumb__sep { color: #c7ccd2; }
+.tl-crumb__current { color: #fff; }
+.tl-hero h1 {
+  color: #fff; font-size: 46px; line-height: 1.12; max-width: 720px; font-weight: 700;
+}
+.tl-hero__sub { margin-top: 22px; max-width: 620px; color: #d7dbe0; font-size: 16px; line-height: 1.7; }
+.tl-hero__cta { margin-top: 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+.tl-hero__call { color: #d7dbe0; font-size: 14px; }
+.tl-hero__call a { color: #fff; font-weight: 600; }
+
+/* =========================================================================
+   2. CALCULATOR FORM
+   ========================================================================= */
+.tl-calcform { background: var(--tl-bg); }
+.tl-calcform__grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
+  background: var(--tl-bg); border-radius: 20px;
+}
+.tl-calcform__col h3 { font-size: 22px; }
+.tl-calcform__hint { color: var(--tl-muted); font-size: 13px; margin-top: 4px; margin-bottom: 22px; }
+
+.tl-field { margin-bottom: 18px; }
+.tl-field > label { display: block; font-size: 14px; font-weight: 600; color: var(--tl-ink); margin-bottom: 8px; }
+.tl-field select,
+.tl-field input[type="text"] {
+  width: 100%; height: 52px; border: 1px solid var(--tl-border); border-radius: 10px;
+  background: #fff; padding: 0 16px; font-size: 15px; color: var(--tl-ink); font-family: inherit;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%2397a1b0' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat; background-position: right 16px center;
+}
+.tl-field input[type="text"] { background-image: none; }
+
+/* stepper */
+.tl-stepper {
+  display: flex; align-items: center; justify-content: space-between;
+  height: 52px; border: 1px solid var(--tl-border); border-radius: 10px; background: #fff; padding: 0 8px;
+}
+.tl-stepper button {
+  width: 36px; height: 36px; flex: 0 0 36px; padding: 0; margin: 0; border: 0; background: transparent;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; line-height: 1; color: var(--tl-body); cursor: pointer; border-radius: 8px;
+}
+.tl-stepper button:hover { background: var(--tl-bg); }
+.tl-stepper input {
+  flex: 1 1 auto; min-width: 0; height: 100%; text-align: center; border: 0; padding: 0;
+  font-size: 16px; font-weight: 600; color: var(--tl-ink); background: transparent; font-family: inherit;
+}
+.tl-stepper input:focus { outline: none; }
+
+.tl-moreopts { font-size: 13px; color: var(--tl-muted); margin: 4px 0 24px; }
+.tl-calcform .tl-btn { width: auto; }
+
+/* right column: steps */
+.tl-steps { list-style: none; padding: 0; margin: 0 0 32px; }
+.tl-steps li { display: flex; flex-direction: row; align-items: flex-start; gap: 16px; padding: 14px 0; }
+.tl-steps__num { flex: 0 0 32px; color: var(--tl-orange); font-weight: 700; font-size: 18px; line-height: 1.3; }
+.tl-steps__body { display: flex; flex-direction: column; gap: 5px; }
+.tl-steps__t { color: var(--tl-ink); font-weight: 600; font-size: 15px; }
+.tl-steps__d { font-size: 14px; margin: 0; }
+
+.tl-stdtitle { font-size: 17px; border-top: 1px solid var(--tl-border); padding-top: 26px; }
+.tl-stdsub { color: var(--tl-muted); font-size: 13px; margin: 4px 0 18px; }
+
+.tl-stat {
+  display: flex; align-items: center; gap: 18px; background: #fff; border: 1px solid var(--tl-border);
+  border-radius: 12px; padding: 16px 20px; margin-bottom: 12px;
+}
+.tl-stat__big { color: var(--tl-orange); font-weight: 700; font-size: 20px; min-width: 92px; }
+.tl-stat__t { color: var(--tl-ink); font-weight: 600; font-size: 14px; }
+.tl-stat__d { font-size: 12.5px; color: var(--tl-muted); }
+
+/* =========================================================================
+   3. COMPARISON
+   ========================================================================= */
+.tl-cmp__grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+.tl-cmp__card { background: var(--tl-bg); border-radius: var(--tl-radius); padding: 32px; text-align: left; }
+.tl-cmp__card h3 { font-size: 20px; text-align: left; }
+.tl-cmp__sub { color: var(--tl-muted); font-size: 13px; margin-top: 4px; padding-bottom: 18px; border-bottom: 1px solid var(--tl-border); }
+.tl-cmp__item { display: flex; flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--tl-border); }
+.tl-cmp__item > span:last-child { display: flex; flex-direction: column; gap: 4px; }
+.tl-cmp__item:last-child { border-bottom: 0; }
+.tl-cmp__mark { font-weight: 700; flex-shrink: 0; line-height: 1.5; }
+.tl-cmp--bad .tl-cmp__mark { color: #c9ced6; }
+.tl-cmp--good .tl-cmp__mark { color: var(--tl-orange); }
+.tl-cmp__label { color: var(--tl-ink); font-weight: 600; font-size: 14.5px; }
+.tl-cmp__desc { font-size: 13.5px; margin-top: 4px; }
+
+/* cost box */
+.tl-cost { margin-top: 28px; background: var(--tl-bg); border-radius: 20px; padding: 48px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 56px; align-items: center; }
+.tl-cost > div:first-child { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
+.tl-cost h3 { font-size: 26px; line-height: 1.25; }
+.tl-cost__body { font-size: 14.5px; margin: 0; line-height: 1.8; max-width: 520px; }
+.tl-cost__stat { background: #fff; border-radius: 12px; padding: 18px 22px; margin-bottom: 14px; }
+.tl-cost__num { color: var(--tl-orange); font-size: 28px; font-weight: 700; }
+.tl-cost__cap { font-size: 13px; color: var(--tl-muted); margin-top: 2px; }
+.tl-foot-note { color: var(--tl-muted); font-size: 11.5px; margin-top: 26px; line-height: 1.6; }
+
+/* =========================================================================
+   4. FEE TABLES
+   ========================================================================= */
+.tl-fees { }
+.tl-table-wrap { border-radius: 12px; overflow: hidden; box-shadow: var(--tl-shadow); margin-bottom: 64px; }
+.tl-table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; }
+.tl-table thead th {
+  background: var(--tl-orange); color: #fff; text-align: left; font-weight: 600;
+  font-size: 11.5px; letter-spacing: .06em; text-transform: uppercase; padding: 16px 22px;
+}
+.tl-table tbody td { padding: 18px 22px; border-bottom: 1px solid var(--tl-border); }
+.tl-table tbody tr:nth-child(even) { background: #fafcfd; }
+.tl-table tbody tr:last-child td { border-bottom: 0; }
+.tl-table td:first-child { color: var(--tl-ink); font-weight: 600; }
+.tl-table .tl-row-hl td { background: #fff4ea; }
+.tl-cite { color: var(--tl-muted); font-size: 11.5px; margin-top: -48px; margin-bottom: 0; }
+
+/* =========================================================================
+   5. FEE DRIVERS + HOW TRUELINE FITS
+   ========================================================================= */
+.tl-drivers { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.tl-driver { background: var(--tl-orange); color: #fff; border-radius: var(--tl-radius); padding: 30px 28px; text-align: left; }
+.tl-driver__ico { width: 48px; height: 48px; border-radius: 10px; background: rgba(255,255,255,.18); display: flex; align-items: center; justify-content: center; margin-bottom: 18px; }
+.tl-driver__ico img { display: block; width: 26px; height: 26px; object-fit: contain; }
+.tl-driver h3 { color: #fff; font-size: 18px; text-align: left; }
+.tl-driver p { color: rgba(255,255,255,.92); font-size: 14px; margin-top: 10px; line-height: 1.6; }
+
+.tl-fits-title { font-size: 30px; text-align: left; margin: 64px 0 24px; }
+.tl-fits {
+  position: relative; overflow: hidden;
+  background: #1f2020; color: #fff; border-radius: 18px; padding: 56px;
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 56px; align-items: center;
+  background-image: linear-gradient(90deg, rgba(20,21,21,.96) 0%, rgba(20,21,21,.82) 100%), url("https://wearetrueline.com/wp-content/uploads/2026/06/fit-section-bg.png");
+  background-size: cover; background-position: center;
+}
+.tl-fits__main { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
+.tl-fits h3 { color: #fff; font-size: 26px; line-height: 1.25; }
+.tl-fits__body { color: #c7ccd2; font-size: 14.5px; margin: 0; max-width: 460px; line-height: 1.8; }
+.tl-fits__stat { border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 20px 24px; margin-bottom: 14px; }
+.tl-fits__stat:last-child { margin-bottom: 0; }
+.tl-fits__num { color: var(--tl-orange); font-size: 30px; font-weight: 700; line-height: 1; }
+.tl-fits__cap { color: #aeb4bc; font-size: 13px; margin-top: 8px; }
+
+/* =========================================================================
+   6. FAQ
+   ========================================================================= */
+.tl-faq { background: #fff; }
+.tl-faq .tl-head { text-align: left; margin-left: 0; max-width: 100%; }
+.tl-faq .tl-head h2 { font-size: 38px; }
+.tl-faq__list { max-width: 100%; }
+.tl-acc {
+  background: #fff; border: 1px solid var(--tl-border); border-radius: 12px; margin-bottom: 12px; overflow: hidden;
+  box-shadow: 0 1px 3px rgba(20, 35, 60, .05);
+}
+.tl-acc__q {
+  width: 100%; text-align: left; background: none; border: 0; cursor: pointer; font-family: inherit;
+  display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 20px 24px; font-size: 15px; font-weight: 600; color: var(--tl-ink);
+}
+.tl-acc__sign { color: var(--tl-orange); font-size: 22px; line-height: 1; transition: transform .2s ease; flex-shrink: 0; }
+.tl-acc[open] .tl-acc__sign, .tl-acc.is-open .tl-acc__sign { transform: rotate(45deg); }
+.tl-acc__a { padding: 0 24px; max-height: 0; overflow: hidden; transition: max-height .25s ease, padding .25s ease; font-size: 14px; }
+.tl-acc.is-open .tl-acc__a { max-height: 400px; padding: 0 24px 22px; }
+
+/* =========================================================================
+   7. READY TO HIRE (native -> HubSpot)
+   ========================================================================= */
+.tl-hire__grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 0; border-radius: 18px; overflow: hidden; box-shadow: var(--tl-shadow); }
+.tl-hire__img { background-image: url("https://wearetrueline.com/wp-content/uploads/2026/06/hire-form-hubspot-bg.png"); background-size: cover; background-position: center; min-height: 420px; }
+.tl-hire__panel { background: var(--tl-bg); padding: 52px; }
+.tl-hire__panel h2 { font-size: 30px; }
+.tl-hire__panel > p { margin-top: 12px; font-size: 14.5px; max-width: 420px; }
+.tl-hire__form { margin-top: 26px; }
+.tl-hire__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+.tl-hire__form input, .tl-hire__form textarea {
+  width: 100%; border: 1px solid var(--tl-border); border-radius: 10px; background: #fff;
+  padding: 14px 16px; font-size: 14.5px; font-family: inherit; color: var(--tl-ink);
+}
+.tl-hire__form textarea { min-height: 92px; resize: vertical; }
+.tl-hire__form input::placeholder, .tl-hire__form textarea::placeholder { color: #9aa3b0; }
+.tl-hire__msg { margin-top: 14px; font-size: 13.5px; display: none; }
+.tl-hire__msg.is-ok { display: block; color: #1f9d57; }
+.tl-hire__msg.is-err { display: block; color: #d6492f; }
+
+/* =========================================================================
+   8. CALCULATORS BY INDUSTRY
+   ========================================================================= */
+.tl-industries { background: #14171a; color: #fff; }
+.tl-industries .tl-head h2 { color: #fff; }
+.tl-industries .tl-head p { color: #aeb4bc; }
+.tl-ind__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+.tl-ind__card { min-height: 200px; }
+.tl-ind__card {
+  position: relative; border-radius: 12px; overflow: hidden; min-height: 150px;
+  display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
+  background: #23262a; color: #fff;
+  background-size: cover; background-position: center;
+}
+.tl-ind__card::before { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,12,14,.15) 0%, rgba(10,12,14,.85) 100%); }
+.tl-ind__card > * { position: relative; z-index: 1; }
+.tl-ind__card h4 { color: #fff; font-size: 16px; }
+.tl-ind__card span { color: #d7dbe0; font-size: 12.5px; margin-top: 4px; }
+.tl-ind__card:hover { outline: 2px solid var(--tl-orange); }
+
+/* (Footer removed — the theme renders the global footer automatically.) */
+
+/* =========================================================================
+   RESPONSIVE
+   ========================================================================= */
+@media (max-width: 960px) {
+  .tl-section { padding: 56px 0; }
+  .tl-hero { padding: 96px 0 72px; }
+  .tl-hero h1 { font-size: 34px; }
+  .tl-calcform__grid, .tl-cmp__grid, .tl-cost, .tl-drivers, .tl-fits, .tl-hire__grid { grid-template-columns: 1fr; gap: 32px; }
+  .tl-ind__grid { grid-template-columns: repeat(2, 1fr); }
+  .tl-hire__img { min-height: 240px; }
+  .tl-fits-title { margin-top: 40px; }
+  .tl-table-wrap { overflow-x: auto; }
+  .tl-table { min-width: 640px; }
+}
+@media (max-width: 560px) {
+  .tl-head h2 { font-size: 26px; }
+  .tl-hire__row { grid-template-columns: 1fr; }
+  .tl-ind__grid { grid-template-columns: 1fr; }
+  .tl-fits, .tl-cost, .tl-hire__panel, .tl-cmp__card { padding: 28px; }
+}
