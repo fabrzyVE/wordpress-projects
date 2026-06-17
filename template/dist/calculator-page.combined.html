@@ -48,9 +48,39 @@
   overflow-x: hidden;
 }
 
+/* -------------------------------------------------------------------------
+   THEME GUARD
+   The active Elementor kit (.elementor-kit-10650) sets GLOBAL styles that
+   bleed into our scoped widgets:
+     • button / input[type=submit]  →  background #FF4C68, 50px pill, white text
+     • a                            →  color #FF4C68
+   Those selectors are specificity (0,1,1) and beat our single-class rules,
+   so we neutralize them here and re-assert our own styles with a `.tl-calc`
+   prefix (0,2,x) further down. Keep these resets first so real styles win.
+   ------------------------------------------------------------------------- */
+.tl-calc button {
+  background: transparent; border: 0; border-radius: 0;
+  padding: 0; margin: 0; color: inherit; font: inherit;
+  line-height: normal; box-shadow: none; text-transform: none; letter-spacing: normal;
+  cursor: pointer;
+}
+.tl-calc a { color: inherit; font-size: inherit; line-height: inherit; }
+
+/* Remove the theme's auto-printed page title banner on calculator pages.
+   The theme renders `h1.entry-title { display: var(--page-title-display) }`
+   and defaults the var to `block`. This style only loads on pages that embed
+   this template, so it won't affect the rest of the site. */
+:root { --page-title-display: none; }
+.tl-calc { }                /* anchor */
+h1.entry-title,
+.entry-header,
+.page-header,
+.inner_banner_cs { display: none !important; }
+
 .tl-calc h1, .tl-calc h2, .tl-calc h3, .tl-calc h4 {
   color: var(--tl-ink);
   margin: 0;
+  font-family: inherit;   /* theme forces h1->Roboto; keep Montserrat */
   font-weight: 700;
   line-height: 1.2;
   letter-spacing: -0.01em;
@@ -59,26 +89,26 @@
 .tl-calc a { color: inherit; text-decoration: none; }
 
 .tl-wrap { max-width: var(--tl-maxw); margin: 0 auto; padding: 0 24px; }
-.tl-section { padding: 80px 0; }
+.tl-section { padding: 96px 0; }
 .tl-eyebrow { color: var(--tl-muted); font-size: 13px; }
 
 /* ---- Section heading block (centered) ---- */
-.tl-head { text-align: center; max-width: 760px; margin: 0 auto 48px; }
+.tl-head { text-align: center; max-width: 760px; margin: 0 auto 56px; }
 .tl-head h2 { font-size: 34px; }
 .tl-head p { margin-top: 12px; color: var(--tl-body); font-size: 16px; }
 .tl-accent { color: var(--tl-orange); }
 
-/* ---- Buttons ---- */
-.tl-btn {
-  display: inline-flex; align-items: center; gap: 8px;
+/* ---- Buttons ---- (prefixed so they beat the theme's global button rule) */
+.tl-calc .tl-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
   background: var(--tl-orange); color: #fff !important;
-  font-weight: 600; font-size: 15px;
+  font-weight: 600; font-size: 15px; line-height: 1.2;
   padding: 14px 26px; border-radius: 10px; border: 0; cursor: pointer;
   transition: background .15s ease, transform .15s ease;
-  font-family: inherit;
+  font-family: inherit; text-transform: none; letter-spacing: normal; width: auto;
 }
-.tl-btn:hover { background: var(--tl-orange-dark); transform: translateY(-1px); }
-.tl-btn--lg { padding: 16px 30px; font-size: 16px; }
+.tl-calc .tl-btn:hover { background: var(--tl-orange-dark); transform: translateY(-1px); }
+.tl-calc .tl-btn--lg { padding: 16px 30px; font-size: 16px; }
 
 /* =========================================================================
    1. HERO
@@ -94,27 +124,30 @@
   background-position: center;
 }
 .tl-hero__crumbs { font-size: 13px; margin-bottom: 22px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
-.tl-crumb { color: var(--tl-orange); font-weight: 600; }
-.tl-crumb:hover { text-decoration: underline; }
+.tl-calc .tl-crumb { color: var(--tl-orange); font-weight: 600; font-size: 13px; }
+.tl-calc .tl-crumb:hover { text-decoration: underline; }
 .tl-crumb__sep { color: #c7ccd2; }
 .tl-crumb__current { color: #fff; }
-.tl-hero h1 {
-  color: #fff; font-size: 46px; line-height: 1.12; max-width: 720px; font-weight: 700;
+.tl-calc .tl-hero .tl-wrap { text-align: left; }
+.tl-calc .tl-hero h1 {
+  color: #fff; font-size: 46px; line-height: 1.14; max-width: 880px; font-weight: 700;
+  text-align: left;
 }
-.tl-hero__sub { margin-top: 22px; max-width: 620px; color: #d7dbe0; font-size: 16px; line-height: 1.7; }
+.tl-calc .tl-hero__sub { margin-top: 30px; max-width: 720px; color: #d7dbe0; font-size: 16px; line-height: 1.7; text-align: left; }
 .tl-hero__cta { margin-top: 32px; display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
 .tl-hero__call { color: #d7dbe0; font-size: 14px; }
-.tl-hero__call a { color: #fff; font-weight: 600; }
+.tl-calc .tl-hero__call a { color: #fff; font-weight: 600; }
 
 /* =========================================================================
    2. CALCULATOR FORM
    ========================================================================= */
-.tl-calcform { background: var(--tl-bg); }
+.tl-calcform { background: #fff; }
 .tl-calcform__grid {
   display: grid; grid-template-columns: 1fr 1fr; gap: 56px;
-  background: var(--tl-bg); border-radius: 20px;
+  background: var(--tl-bg); border-radius: 20px; padding: 48px;
 }
-.tl-calcform__col h3 { font-size: 22px; }
+.tl-calcform__col { display: flex; flex-direction: column; text-align: left; }
+.tl-calcform__col h3 { font-size: 22px; text-align: left; }
 .tl-calcform__hint { color: var(--tl-muted); font-size: 13px; margin-top: 4px; margin-bottom: 22px; }
 
 .tl-field { margin-bottom: 18px; }
@@ -131,29 +164,33 @@
 
 /* stepper */
 .tl-stepper {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: stretch; justify-content: space-between;
   height: 52px; border: 1px solid var(--tl-border); border-radius: 10px; background: #fff; padding: 0 8px;
 }
-.tl-stepper button {
-  width: 36px; height: 36px; flex: 0 0 36px; padding: 0; margin: 0; border: 0; background: transparent;
-  display: flex; align-items: center; justify-content: center;
+.tl-calc .tl-stepper button {
+  width: 36px; flex: 0 0 36px; padding: 0; margin: 0; border: 0; background: transparent;
+  display: flex; align-items: center; justify-content: center; align-self: stretch;
   font-size: 22px; line-height: 1; color: var(--tl-body); cursor: pointer; border-radius: 8px;
 }
-.tl-stepper button:hover { background: var(--tl-bg); }
+.tl-calc .tl-stepper button:hover { background: var(--tl-bg); }
 .tl-stepper input {
-  flex: 1 1 auto; min-width: 0; height: 100%; text-align: center; border: 0; padding: 0;
+  flex: 1 1 auto; min-width: 0; align-self: stretch; height: auto; text-align: center;
+  border: 0; padding: 0; margin: 0;
   font-size: 16px; font-weight: 600; color: var(--tl-ink); background: transparent; font-family: inherit;
+  line-height: 50px;  /* 52px box minus 1px borders → matches button glyph centre */
 }
 .tl-stepper input:focus { outline: none; }
 
 .tl-moreopts { font-size: 13px; color: var(--tl-muted); margin: 4px 0 24px; }
-.tl-calcform .tl-btn { width: auto; }
+/* button sits bottom-left so the inputs column fills the same height as the
+   "How to Use" column (grid already stretches both columns equal). */
+.tl-calcform .tl-btn { width: auto; align-self: flex-start; margin-top: auto; }
 
 /* right column: steps */
 .tl-steps { list-style: none; padding: 0; margin: 0 0 32px; }
-.tl-steps li { display: flex; flex-direction: row; align-items: flex-start; gap: 16px; padding: 14px 0; }
+.tl-steps li { display: flex; flex-direction: row; align-items: flex-start; gap: 16px; padding: 18px 0; }
 .tl-steps__num { flex: 0 0 32px; color: var(--tl-orange); font-weight: 700; font-size: 18px; line-height: 1.3; }
-.tl-steps__body { display: flex; flex-direction: column; gap: 5px; }
+.tl-steps__body { display: flex; flex-direction: column; gap: 6px; }
 .tl-steps__t { color: var(--tl-ink); font-weight: 600; font-size: 15px; }
 .tl-steps__d { font-size: 14px; margin: 0; }
 
@@ -162,7 +199,7 @@
 
 .tl-stat {
   display: flex; align-items: center; gap: 18px; background: #fff; border: 1px solid var(--tl-border);
-  border-radius: 12px; padding: 16px 20px; margin-bottom: 12px;
+  border-radius: 12px; padding: 18px 22px; margin-bottom: 14px;
 }
 .tl-stat__big { color: var(--tl-orange); font-weight: 700; font-size: 20px; min-width: 92px; }
 .tl-stat__t { color: var(--tl-ink); font-weight: 600; font-size: 14px; }
@@ -175,7 +212,7 @@
 .tl-cmp__card { background: var(--tl-bg); border-radius: var(--tl-radius); padding: 32px; text-align: left; }
 .tl-cmp__card h3 { font-size: 20px; text-align: left; }
 .tl-cmp__sub { color: var(--tl-muted); font-size: 13px; margin-top: 4px; padding-bottom: 18px; border-bottom: 1px solid var(--tl-border); }
-.tl-cmp__item { display: flex; flex-direction: row; align-items: flex-start; gap: 12px; padding: 16px 0; border-bottom: 1px solid var(--tl-border); }
+.tl-cmp__item { display: flex; flex-direction: row; align-items: flex-start; gap: 12px; padding: 18px 0; border-bottom: 1px solid var(--tl-border); }
 .tl-cmp__item > span:last-child { display: flex; flex-direction: column; gap: 4px; }
 .tl-cmp__item:last-child { border-bottom: 0; }
 .tl-cmp__mark { font-weight: 700; flex-shrink: 0; line-height: 1.5; }
@@ -187,9 +224,9 @@
 /* cost box */
 .tl-cost { margin-top: 28px; background: var(--tl-bg); border-radius: 20px; padding: 48px; display: grid; grid-template-columns: 1.6fr 1fr; gap: 56px; align-items: center; }
 .tl-cost > div:first-child { display: flex; flex-direction: column; align-items: flex-start; gap: 24px; }
-.tl-cost h3 { font-size: 26px; line-height: 1.25; }
+.tl-cost h3 { font-size: 22px; line-height: 1.25; white-space: nowrap; letter-spacing: -0.02em; }
 .tl-cost__body { font-size: 14.5px; margin: 0; line-height: 1.8; max-width: 520px; }
-.tl-cost__stat { background: #fff; border-radius: 12px; padding: 18px 22px; margin-bottom: 14px; }
+.tl-cost__stat { background: #fff; border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
 .tl-cost__num { color: var(--tl-orange); font-size: 28px; font-weight: 700; }
 .tl-cost__cap { font-size: 13px; color: var(--tl-muted); margin-top: 2px; }
 .tl-foot-note { color: var(--tl-muted); font-size: 11.5px; margin-top: 26px; line-height: 1.6; }
@@ -199,6 +236,7 @@
    ========================================================================= */
 .tl-fees { }
 .tl-table-wrap { border-radius: 12px; overflow: hidden; box-shadow: var(--tl-shadow); margin-bottom: 64px; }
+.tl-table-wrap--last { margin-bottom: 0; }
 .tl-table { width: 100%; border-collapse: collapse; font-size: 14px; background: #fff; }
 .tl-table thead th {
   background: var(--tl-orange); color: #fff; text-align: left; font-weight: 600;
@@ -221,7 +259,7 @@
 .tl-driver h3 { color: #fff; font-size: 18px; text-align: left; }
 .tl-driver p { color: rgba(255,255,255,.92); font-size: 14px; margin-top: 10px; line-height: 1.6; }
 
-.tl-fits-title { font-size: 30px; text-align: left; margin: 64px 0 24px; }
+.tl-fits-title { font-size: 30px; text-align: left; margin: 120px 0 16px; }
 .tl-fits {
   position: relative; overflow: hidden;
   background: #1f2020; color: #fff; border-radius: 18px; padding: 56px;
@@ -232,7 +270,7 @@
 .tl-fits__main { display: flex; flex-direction: column; align-items: flex-start; gap: 22px; }
 .tl-fits h3 { color: #fff; font-size: 26px; line-height: 1.25; }
 .tl-fits__body { color: #c7ccd2; font-size: 14.5px; margin: 0; max-width: 460px; line-height: 1.8; }
-.tl-fits__stat { border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 20px 24px; margin-bottom: 14px; }
+.tl-fits__stat { border: 1px solid rgba(255,255,255,.16); border-radius: 12px; padding: 20px 24px; margin-bottom: 16px; }
 .tl-fits__stat:last-child { margin-bottom: 0; }
 .tl-fits__num { color: var(--tl-orange); font-size: 30px; font-weight: 700; line-height: 1; }
 .tl-fits__cap { color: #aeb4bc; font-size: 13px; margin-top: 8px; }
@@ -245,18 +283,27 @@
 .tl-faq .tl-head h2 { font-size: 38px; }
 .tl-faq__list { max-width: 100%; }
 .tl-acc {
-  background: #fff; border: 1px solid var(--tl-border); border-radius: 12px; margin-bottom: 12px; overflow: hidden;
+  background: #fff; border: 1px solid var(--tl-border); border-radius: 12px; margin-bottom: 14px; overflow: hidden;
   box-shadow: 0 1px 3px rgba(20, 35, 60, .05);
+  transition: box-shadow .15s ease, border-color .15s ease;
 }
-.tl-acc__q {
-  width: 100%; text-align: left; background: none; border: 0; cursor: pointer; font-family: inherit;
+/* Question bar: WHITE by default, ORANGE on hover. `!important` is deliberate —
+   it guarantees we beat both the theme's global `button{background:#FF4C68}` rule
+   AND any WP Rocket "Used CSS" reordering that could otherwise resurrect it. */
+.tl-calc .tl-acc__q {
+  width: 100%; text-align: left; border: 0; cursor: pointer; font-family: inherit;
   display: flex; justify-content: space-between; align-items: center; gap: 16px;
-  padding: 20px 24px; font-size: 15px; font-weight: 600; color: var(--tl-ink);
+  padding: 22px 26px; font-size: 15px; font-weight: 600;
+  line-height: 1.4; transition: background .15s ease, color .15s ease;
+  background: #fff !important; color: var(--tl-ink) !important; border-radius: 0 !important;
 }
-.tl-acc__sign { color: var(--tl-orange); font-size: 22px; line-height: 1; transition: transform .2s ease; flex-shrink: 0; }
-.tl-acc[open] .tl-acc__sign, .tl-acc.is-open .tl-acc__sign { transform: rotate(45deg); }
-.tl-acc__a { padding: 0 24px; max-height: 0; overflow: hidden; transition: max-height .25s ease, padding .25s ease; font-size: 14px; }
-.tl-acc.is-open .tl-acc__a { max-height: 400px; padding: 0 24px 22px; }
+.tl-calc .tl-acc__q:hover { background: var(--tl-orange) !important; color: #fff !important; }
+.tl-acc__sign { color: var(--tl-orange); font-size: 24px; line-height: 1; transition: transform .2s ease, color .15s ease; flex-shrink: 0; }
+.tl-calc .tl-acc__q:hover .tl-acc__sign { color: #fff !important; }
+.tl-acc.is-open .tl-acc__sign { transform: rotate(45deg); }
+.tl-acc__a { padding: 0 26px; max-height: 0; overflow: hidden; transition: max-height .3s ease, padding .3s ease; font-size: 14px; color: var(--tl-body); line-height: 1.7; }
+.tl-acc.is-open .tl-acc__a { max-height: 600px; padding: 4px 26px 24px; }
+.tl-acc.is-open { box-shadow: 0 8px 24px rgba(20,35,60,.08); border-color: #dfe5ec; }
 
 /* =========================================================================
    7. READY TO HIRE (native -> HubSpot)
@@ -279,6 +326,44 @@
 .tl-hire__msg.is-err { display: block; color: #d6492f; }
 
 /* =========================================================================
+   QUOTE POPUP (modal) — centered dialog + grayed backdrop
+   Kept inside .tl-calc so the scoped styles + CSS vars apply. position:fixed
+   makes it viewport-centered; overflow:hidden on ancestors does not clip it.
+   ========================================================================= */
+.tl-modal {
+  position: fixed; inset: 0; z-index: 100000;
+  display: none; align-items: center; justify-content: center; padding: 24px;
+}
+.tl-modal.is-open { display: flex; }
+.tl-modal__backdrop {
+  position: absolute; inset: 0; background: rgba(15, 20, 28, .6);
+  -webkit-backdrop-filter: blur(2px); backdrop-filter: blur(2px);
+  animation: tl-fade-in .2s ease;
+}
+.tl-modal__dialog {
+  position: relative; z-index: 1; width: 100%; max-width: 640px;
+  max-height: 90vh; overflow-y: auto;
+  background: var(--tl-bg); border-radius: 18px; padding: 48px 44px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, .35);
+  animation: tl-modal-in .22s ease;
+}
+@keyframes tl-fade-in { from { opacity: 0; } to { opacity: 1; } }
+@keyframes tl-modal-in { from { opacity: 0; transform: translateY(14px) scale(.98); } to { opacity: 1; transform: none; } }
+.tl-modal__dialog h2 { font-size: 30px; }
+.tl-modal__sub { margin-top: 12px; font-size: 14.5px; color: var(--tl-body); line-height: 1.7; max-width: 560px; }
+.tl-modal__form { margin-top: 24px; }
+.tl-calc .tl-modal__close {
+  position: absolute; top: 16px; right: 18px; width: 38px; height: 38px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 50% !important; background: #fff !important;
+  border: 1px solid var(--tl-border) !important; color: var(--tl-ink) !important;
+  font-size: 24px !important; line-height: 1; cursor: pointer; padding: 0 !important;
+  transition: background .15s ease, color .15s ease, border-color .15s ease;
+}
+.tl-calc .tl-modal__close:hover { background: var(--tl-orange) !important; color: #fff !important; border-color: var(--tl-orange) !important; }
+body.tl-modal-open { overflow: hidden; }
+
+/* =========================================================================
    8. CALCULATORS BY INDUSTRY
    ========================================================================= */
 .tl-industries { background: #14171a; color: #fff; }
@@ -286,7 +371,7 @@
 .tl-industries .tl-head p { color: #aeb4bc; }
 .tl-ind__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
 .tl-ind__card { min-height: 200px; }
-.tl-ind__card {
+.tl-calc .tl-ind__card {
   position: relative; border-radius: 12px; overflow: hidden; min-height: 150px;
   display: flex; flex-direction: column; justify-content: flex-end; padding: 20px;
   background: #23262a; color: #fff;
@@ -304,7 +389,7 @@
    RESPONSIVE
    ========================================================================= */
 @media (max-width: 960px) {
-  .tl-section { padding: 56px 0; }
+  .tl-section { padding: 64px 0; }
   .tl-hero { padding: 96px 0 72px; }
   .tl-hero h1 { font-size: 34px; }
   .tl-calcform__grid, .tl-cmp__grid, .tl-cost, .tl-drivers, .tl-fits, .tl-hire__grid { grid-template-columns: 1fr; gap: 32px; }
@@ -318,7 +403,11 @@
   .tl-head h2 { font-size: 26px; }
   .tl-hire__row { grid-template-columns: 1fr; }
   .tl-ind__grid { grid-template-columns: 1fr; }
-  .tl-fits, .tl-cost, .tl-hire__panel, .tl-cmp__card { padding: 28px; }
+  .tl-fits, .tl-cost, .tl-hire__panel, .tl-cmp__card, .tl-calcform__grid { padding: 28px; }
+  .tl-cost h3 { white-space: normal; font-size: 20px; }   /* allow wrap when too narrow */
+  .tl-modal { padding: 14px; }
+  .tl-modal__dialog { padding: 32px 22px; }
+  .tl-modal__dialog h2 { font-size: 23px; }
 }
 
 </style>
@@ -491,7 +580,7 @@
         <div>
           <h3>$120K Role Sitting Open for 10 Weeks vs. 2 Weeks</h3>
           <p class="tl-cost__body">On your own: 10 weeks of empty seat costs ~$69K in lost productivity + ~$5K of your team's hiring time = $74K opportunity cost. With Trueline: a 2-week placement at a 25% fee = $30K, plus the seat is filled 8 weeks sooner. Net: you save ~$44K AND get the role filled fast.</p>
-          <a href="#" class="tl-btn" data-open-quote>Talk to a recruiter →</a>
+          <a href="https://wearetrueline.com/recruiting/" class="tl-btn">Talk to a recruiter →</a>
         </div>
         <div>
           <div class="tl-cost__stat"><div class="tl-cost__num">$74K</div><div class="tl-cost__cap">Cost if you hire on your own (10-week vacancy)</div></div>
@@ -503,14 +592,14 @@
     </div>
   </section>
 
-  <!-- ===================== 4. FEE TABLES ============================ -->
-  <section class="tl-section tl-fees" style="background:var(--tl-bg);">
+  <!-- ===================== 4a. FEE TABLE (white) ==================== -->
+  <section class="tl-section tl-fees">
     <div class="tl-wrap">
       <div class="tl-head">
         <h2>How the Recruiter Fee Works</h2>
         <p>Five common fee structures. The calculator handles all of them — here's the breakdown.</p>
       </div>
-      <div class="tl-table-wrap">
+      <div class="tl-table-wrap tl-table-wrap--last">
         <table class="tl-table">
           <thead><tr><th>Fee Type</th><th>Typical Range</th><th>How It's Paid</th><th>Best For</th></tr></thead>
           <tbody>
@@ -521,7 +610,12 @@
           </tbody>
         </table>
       </div>
+    </div>
+  </section>
 
+  <!-- =============== 4b. FEE TABLE BY INDUSTRY (gray band) ========== -->
+  <section class="tl-section tl-fees" style="background:var(--tl-bg);">
+    <div class="tl-wrap">
       <div class="tl-head">
         <h2>Typical Recruiter Fees by Industry</h2>
         <p>Industry benchmarks sourced from BLS, Robert Half Salary Guide, ASA, and Hunt Scanlon.</p>
@@ -577,7 +671,7 @@
         <div class="tl-fits__main">
           <h3>Transparent Pricing. Fast Placement. Guaranteed.</h3>
           <p class="tl-fits__body">Trueline tailors fees to each engagement and places top talent in 14 days on average — well below industry averages. Submit a role to get your specific quote, no commitment required. We back every placement with a 3-month guarantee.</p>
-          <a href="#" class="tl-btn" data-open-quote>Talk to a recruiter →</a>
+          <a href="https://wearetrueline.com/recruiting/" class="tl-btn">Talk to a recruiter →</a>
         </div>
         <div>
           <div class="tl-fits__stat"><div class="tl-fits__num">500+</div><div class="tl-fits__cap">Placements completed</div></div>
@@ -640,12 +734,38 @@
         <p>Interactive industry tools — pick an industry; each calculator uses the same calc engine.</p>
       </div>
       <div class="tl-ind__grid">
-        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/construction-industry-card.png');"><h4>Construction</h4><span>Typical fee 20-25%</span></a>
-        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/accounting-finance-industry-card.png');"><h4>Accounting &amp; Finance</h4><span>Typical fee 20-28%</span></a>
-        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/legal-industry-card.png');"><h4>Legal</h4><span>Typical fee 25-30%</span></a>
+        <a class="tl-ind__card" href="https://wearetrueline.com/construction-recruiter-cost-calculator/" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/construction-industry-card.png');"><h4>Construction</h4><span>Typical fee 20-25%</span></a>
+        <a class="tl-ind__card" href="https://wearetrueline.com/accounting-finance-recruiter-cost-calculator/" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/accounting-finance-industry-card.png');"><h4>Accounting &amp; Finance</h4><span>Typical fee 20-28%</span></a>
+        <a class="tl-ind__card" href="https://wearetrueline.com/legal-recruiter-cost-calculator/" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/legal-industry-card.png');"><h4>Legal</h4><span>Typical fee 25-30%</span></a>
       </div>
     </div>
   </section>
+
+  <!-- ===================== QUOTE POPUP (modal) ===================== -->
+  <!-- Opens from any [data-open-quote] button. Centered dialog over a grayed
+       backdrop; closeable via ✕, backdrop click, or Esc. Hidden by default. -->
+  <div class="tl-modal" id="tl-quote-modal" aria-hidden="true">
+    <div class="tl-modal__backdrop" data-close-quote></div>
+    <div class="tl-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="tl-modal-title">
+      <button type="button" class="tl-modal__close" data-close-quote aria-label="Close">&times;</button>
+      <h2 id="tl-modal-title">Get Your Tailored Estimate</h2>
+      <p class="tl-modal__sub">Tell us about the role. We'll email your specific quote within 1 business day, and a Trueline recruiter will follow up to talk through the specifics.</p>
+      <form class="tl-hire__form tl-modal__form" novalidate>
+        <div class="tl-hire__row">
+          <input type="text" name="fullname" placeholder="Full name" required />
+          <input type="email" name="email" placeholder="Work email" required />
+        </div>
+        <div class="tl-hire__row">
+          <input type="text" name="role_hiring_for" placeholder="Role you're hiring for" />
+          <input type="tel" name="phone" placeholder="Phone (optional)" />
+        </div>
+        <textarea name="message" placeholder="Brief context (urgency, must-haves, location)"></textarea>
+        <input type="hidden" name="industry_interest" value="{industry}" />
+        <button type="submit" class="tl-btn" style="margin-top:14px;">Get My Tailored Quote →</button>
+        <p class="tl-hire__msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
 
   <!-- Footer intentionally omitted — the theme appends the global footer automatically. -->
 
@@ -688,6 +808,7 @@
       initAccordion(root);
       initStepper(root);
       initQuotePopups(root);
+      initQuoteModal(root);
       initHubspotForm(root);
     });
   });
@@ -722,34 +843,67 @@
     });
   }
 
-  /* ---- Clickbait calculator => open popup ---------------------------- */
+  /* ---- Quote popup (self-contained modal) ---------------------------- */
   // The calculator inputs are intentionally not used for a live estimate.
-  // Any element with [data-open-quote] opens the quote popup instead.
+  // Any element with [data-open-quote] opens the centered modal form.
   function initQuotePopups(root) {
     root.querySelectorAll("[data-open-quote]").forEach(function (el) {
       el.addEventListener("click", function (e) {
         e.preventDefault();
-        openQuotePopup();
+        openQuoteModal(root);
       });
     });
   }
 
-  function openQuotePopup() {
-    // Popup Maker: PUM.open(id). Falls back gracefully until QUOTE_POPUP_ID is set.
-    if (window.PUM && QUOTE_POPUP_ID && QUOTE_POPUP_ID.indexOf("__") === -1) {
-      window.PUM.open(QUOTE_POPUP_ID);
-      return;
-    }
-    // Fallback before the popup is wired: scroll to the Ready-to-Hire form.
-    var hire = document.querySelector(".tl-hire");
-    if (hire) hire.scrollIntoView({ behavior: "smooth" });
+  function getModal(root) {
+    return root.querySelector("#tl-quote-modal") || document.getElementById("tl-quote-modal");
   }
 
-  /* ---- Ready to Hire => HubSpot Forms API ---------------------------- */
+  function openQuoteModal(root) {
+    var modal = getModal(root);
+    if (!modal) {
+      // Fallback if the modal markup is missing: scroll to the hire form.
+      var hire = root.querySelector(".tl-hire");
+      if (hire) hire.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("tl-modal-open");
+    var first = modal.querySelector("input, textarea");
+    if (first) setTimeout(function () { try { first.focus(); } catch (e) {} }, 60);
+  }
+
+  function closeQuoteModal(modal) {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("tl-modal-open");
+  }
+
+  // Close via ✕, backdrop click, or Esc. Effects fully reverse on close.
+  function initQuoteModal(root) {
+    var modal = getModal(root);
+    if (!modal) return;
+    modal.querySelectorAll("[data-close-quote]").forEach(function (el) {
+      el.addEventListener("click", function () { closeQuoteModal(modal); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if ((e.key === "Escape" || e.keyCode === 27) && modal.classList.contains("is-open")) {
+        closeQuoteModal(modal);
+      }
+    });
+  }
+
+  /* ---- Ready to Hire + modal => HubSpot Forms API -------------------- */
+  // Binds every .tl-hire__form on the page (the section form AND the modal form).
   function initHubspotForm(root) {
-    var form = root.querySelector(".tl-hire__form");
-    if (!form) return;
-    var msg = root.querySelector(".tl-hire__msg");
+    root.querySelectorAll(".tl-hire__form").forEach(function (form) {
+      bindHubspotForm(form);
+    });
+  }
+
+  function bindHubspotForm(form) {
+    var msg = form.querySelector(".tl-hire__msg");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -788,6 +942,8 @@
           if (res.ok) {
             form.reset();
             showMsg(msg, "Thanks! A Trueline recruiter will reply within 1 business day.", true);
+            var modal = form.closest ? form.closest(".tl-modal") : null;
+            if (modal) setTimeout(function () { closeQuoteModal(modal); }, 1800);
           } else {
             var detail = res.body && res.body.message ? res.body.message : "Please try again.";
             showMsg(msg, "Something went wrong: " + detail, false);

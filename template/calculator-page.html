@@ -196,7 +196,7 @@
         <div>
           <h3>$120K Role Sitting Open for 10 Weeks vs. 2 Weeks</h3>
           <p class="tl-cost__body">On your own: 10 weeks of empty seat costs ~$69K in lost productivity + ~$5K of your team's hiring time = $74K opportunity cost. With Trueline: a 2-week placement at a 25% fee = $30K, plus the seat is filled 8 weeks sooner. Net: you save ~$44K AND get the role filled fast.</p>
-          <a href="#" class="tl-btn" data-open-quote>Talk to a recruiter →</a>
+          <a href="https://wearetrueline.com/recruiting/" class="tl-btn">Talk to a recruiter →</a>
         </div>
         <div>
           <div class="tl-cost__stat"><div class="tl-cost__num">$74K</div><div class="tl-cost__cap">Cost if you hire on your own (10-week vacancy)</div></div>
@@ -208,14 +208,14 @@
     </div>
   </section>
 
-  <!-- ===================== 4. FEE TABLES ============================ -->
-  <section class="tl-section tl-fees" style="background:var(--tl-bg);">
+  <!-- ===================== 4a. FEE TABLE (white) ==================== -->
+  <section class="tl-section tl-fees">
     <div class="tl-wrap">
       <div class="tl-head">
         <h2>How the Recruiter Fee Works</h2>
         <p>Five common fee structures. The calculator handles all of them — here's the breakdown.</p>
       </div>
-      <div class="tl-table-wrap">
+      <div class="tl-table-wrap tl-table-wrap--last">
         <table class="tl-table">
           <thead><tr><th>Fee Type</th><th>Typical Range</th><th>How It's Paid</th><th>Best For</th></tr></thead>
           <tbody>
@@ -226,7 +226,12 @@
           </tbody>
         </table>
       </div>
+    </div>
+  </section>
 
+  <!-- =============== 4b. FEE TABLE BY INDUSTRY (gray band) ========== -->
+  <section class="tl-section tl-fees" style="background:var(--tl-bg);">
+    <div class="tl-wrap">
       <div class="tl-head">
         <h2>Typical Recruiter Fees by Industry</h2>
         <p>Industry benchmarks sourced from BLS, Robert Half Salary Guide, ASA, and Hunt Scanlon.</p>
@@ -282,7 +287,7 @@
         <div class="tl-fits__main">
           <h3>Transparent Pricing. Fast Placement. Guaranteed.</h3>
           <p class="tl-fits__body">Trueline tailors fees to each engagement and places top talent in 14 days on average — well below industry averages. Submit a role to get your specific quote, no commitment required. We back every placement with a 3-month guarantee.</p>
-          <a href="#" class="tl-btn" data-open-quote>Talk to a recruiter →</a>
+          <a href="https://wearetrueline.com/recruiting/" class="tl-btn">Talk to a recruiter →</a>
         </div>
         <div>
           <div class="tl-fits__stat"><div class="tl-fits__num">500+</div><div class="tl-fits__cap">Placements completed</div></div>
@@ -345,12 +350,38 @@
         <p>Interactive industry tools — pick an industry; each calculator uses the same calc engine.</p>
       </div>
       <div class="tl-ind__grid">
-        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/construction-industry-card.png');"><h4>Construction</h4><span>Typical fee 20-25%</span></a>
-        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/accounting-finance-industry-card.png');"><h4>Accounting &amp; Finance</h4><span>Typical fee 20-28%</span></a>
-        <a class="tl-ind__card" href="#" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/legal-industry-card.png');"><h4>Legal</h4><span>Typical fee 25-30%</span></a>
+        <a class="tl-ind__card" href="https://wearetrueline.com/construction-recruiter-cost-calculator/" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/construction-industry-card.png');"><h4>Construction</h4><span>Typical fee 20-25%</span></a>
+        <a class="tl-ind__card" href="https://wearetrueline.com/accounting-finance-recruiter-cost-calculator/" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/accounting-finance-industry-card.png');"><h4>Accounting &amp; Finance</h4><span>Typical fee 20-28%</span></a>
+        <a class="tl-ind__card" href="https://wearetrueline.com/legal-recruiter-cost-calculator/" style="background-image:url('https://wearetrueline.com/wp-content/uploads/2026/06/legal-industry-card.png');"><h4>Legal</h4><span>Typical fee 25-30%</span></a>
       </div>
     </div>
   </section>
+
+  <!-- ===================== QUOTE POPUP (modal) ===================== -->
+  <!-- Opens from any [data-open-quote] button. Centered dialog over a grayed
+       backdrop; closeable via ✕, backdrop click, or Esc. Hidden by default. -->
+  <div class="tl-modal" id="tl-quote-modal" aria-hidden="true">
+    <div class="tl-modal__backdrop" data-close-quote></div>
+    <div class="tl-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="tl-modal-title">
+      <button type="button" class="tl-modal__close" data-close-quote aria-label="Close">&times;</button>
+      <h2 id="tl-modal-title">Get Your Tailored Estimate</h2>
+      <p class="tl-modal__sub">Tell us about the role. We'll email your specific quote within 1 business day, and a Trueline recruiter will follow up to talk through the specifics.</p>
+      <form class="tl-hire__form tl-modal__form" novalidate>
+        <div class="tl-hire__row">
+          <input type="text" name="fullname" placeholder="Full name" required />
+          <input type="email" name="email" placeholder="Work email" required />
+        </div>
+        <div class="tl-hire__row">
+          <input type="text" name="role_hiring_for" placeholder="Role you're hiring for" />
+          <input type="tel" name="phone" placeholder="Phone (optional)" />
+        </div>
+        <textarea name="message" placeholder="Brief context (urgency, must-haves, location)"></textarea>
+        <input type="hidden" name="industry_interest" value="{industry}" />
+        <button type="submit" class="tl-btn" style="margin-top:14px;">Get My Tailored Quote →</button>
+        <p class="tl-hire__msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
 
   <!-- Footer intentionally omitted — the theme appends the global footer automatically. -->
 

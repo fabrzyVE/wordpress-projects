@@ -35,6 +35,7 @@
       initAccordion(root);
       initStepper(root);
       initQuotePopups(root);
+      initQuoteModal(root);
       initHubspotForm(root);
     });
   });
@@ -69,34 +70,67 @@
     });
   }
 
-  /* ---- Clickbait calculator => open popup ---------------------------- */
+  /* ---- Quote popup (self-contained modal) ---------------------------- */
   // The calculator inputs are intentionally not used for a live estimate.
-  // Any element with [data-open-quote] opens the quote popup instead.
+  // Any element with [data-open-quote] opens the centered modal form.
   function initQuotePopups(root) {
     root.querySelectorAll("[data-open-quote]").forEach(function (el) {
       el.addEventListener("click", function (e) {
         e.preventDefault();
-        openQuotePopup();
+        openQuoteModal(root);
       });
     });
   }
 
-  function openQuotePopup() {
-    // Popup Maker: PUM.open(id). Falls back gracefully until QUOTE_POPUP_ID is set.
-    if (window.PUM && QUOTE_POPUP_ID && QUOTE_POPUP_ID.indexOf("__") === -1) {
-      window.PUM.open(QUOTE_POPUP_ID);
-      return;
-    }
-    // Fallback before the popup is wired: scroll to the Ready-to-Hire form.
-    var hire = document.querySelector(".tl-hire");
-    if (hire) hire.scrollIntoView({ behavior: "smooth" });
+  function getModal(root) {
+    return root.querySelector("#tl-quote-modal") || document.getElementById("tl-quote-modal");
   }
 
-  /* ---- Ready to Hire => HubSpot Forms API ---------------------------- */
+  function openQuoteModal(root) {
+    var modal = getModal(root);
+    if (!modal) {
+      // Fallback if the modal markup is missing: scroll to the hire form.
+      var hire = root.querySelector(".tl-hire");
+      if (hire) hire.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+    modal.classList.add("is-open");
+    modal.setAttribute("aria-hidden", "false");
+    document.body.classList.add("tl-modal-open");
+    var first = modal.querySelector("input, textarea");
+    if (first) setTimeout(function () { try { first.focus(); } catch (e) {} }, 60);
+  }
+
+  function closeQuoteModal(modal) {
+    modal.classList.remove("is-open");
+    modal.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("tl-modal-open");
+  }
+
+  // Close via ✕, backdrop click, or Esc. Effects fully reverse on close.
+  function initQuoteModal(root) {
+    var modal = getModal(root);
+    if (!modal) return;
+    modal.querySelectorAll("[data-close-quote]").forEach(function (el) {
+      el.addEventListener("click", function () { closeQuoteModal(modal); });
+    });
+    document.addEventListener("keydown", function (e) {
+      if ((e.key === "Escape" || e.keyCode === 27) && modal.classList.contains("is-open")) {
+        closeQuoteModal(modal);
+      }
+    });
+  }
+
+  /* ---- Ready to Hire + modal => HubSpot Forms API -------------------- */
+  // Binds every .tl-hire__form on the page (the section form AND the modal form).
   function initHubspotForm(root) {
-    var form = root.querySelector(".tl-hire__form");
-    if (!form) return;
-    var msg = root.querySelector(".tl-hire__msg");
+    root.querySelectorAll(".tl-hire__form").forEach(function (form) {
+      bindHubspotForm(form);
+    });
+  }
+
+  function bindHubspotForm(form) {
+    var msg = form.querySelector(".tl-hire__msg");
 
     form.addEventListener("submit", function (e) {
       e.preventDefault();
@@ -135,6 +169,8 @@
           if (res.ok) {
             form.reset();
             showMsg(msg, "Thanks! A Trueline recruiter will reply within 1 business day.", true);
+            var modal = form.closest ? form.closest(".tl-modal") : null;
+            if (modal) setTimeout(function () { closeQuoteModal(modal); }, 1800);
           } else {
             var detail = res.body && res.body.message ? res.body.message : "Please try again.";
             showMsg(msg, "Something went wrong: " + detail, false);
