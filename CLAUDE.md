@@ -14,4 +14,8 @@ Wordpress Website with Pages / Blogs with meta descriptions that need shortening
 - Under 160 characters
 - no em dashes and humanize it as much as possible
 
+## Task 2 
+
+check the alt_tags_missing.csv file and apply alt tags to all unique images that need alt tags. Make sure the alt tags are seo friendly and relevant to the picture.
+
 ```
