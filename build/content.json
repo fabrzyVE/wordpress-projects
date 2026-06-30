@@ -1,0 +1,679 @@
+[
+  {
+    "kind": "location",
+    "key": "Mechanicsburg",
+    "county": "Cumberland",
+    "slug": "mechanicsburg-pa",
+    "slug_full": "/locations/mechanicsburg-pa/",
+    "address": "4950 Wilson Lane, Mechanicsburg, PA 17055",
+    "phone": "(717) 744-0756",
+    "nearest_facility": "",
+    "distance_mi": "",
+    "distance_min": "",
+    "programs": "Detox, Residential, PHP, IOP (+ MAT, Virtual IOP in body)",
+    "title_tag": "Mental Health and Addiction Center in Mechanicsburg, PA",
+    "meta_description": "Detox, residential & outpatient addiction and mental health care in Mechanicsburg, PA. Joint Commission accredited. Call 24/7.",
+    "h1": "Mental Health and Addiction Center in Mechanicsburg, PA",
+    "hero_sub": "Serving Mechanicsburg and Cumberland County, Arkview offers personalized addiction and mental health care — detox, residential, and outpatient programs, all under one roof. Evidence-based. 24/7 admissions.",
+    "trust_bar": [
+      "Accredited by The Joint Commission",
+      "Most Insurance Accepted",
+      "24/7 Admissions"
+    ],
+    "intro": "If you or someone you love is struggling with addiction, substance use, or a mental health condition, help is closer than you think. Arkview's Mechanicsburg campus provides a full continuum of care, from medically supervised detox and residential treatment through intensive outpatient and aftercare. As one of only a handful of Pennsylvania providers with separate, dedicated facilities for mental health and substance use, we make sure each program fits what you're actually here for. You don't have to navigate this alone.",
+    "stat_cards": [
+      {
+        "big": "55,000 sq ft",
+        "label": "All services under one roof"
+      },
+      {
+        "big": "1 of 1–2 in PA",
+        "label": "Separate facilities for mental health & addiction"
+      },
+      {
+        "big": "Accredited",
+        "label": "By The Joint Commission"
+      },
+      {
+        "big": "In-network",
+        "label": "With most major insurers"
+      }
+    ],
+    "levels": {
+      "title": "Treatment Programs at Our Mechanicsburg Campus",
+      "cards": [
+        {
+          "name": "Medical Detox",
+          "desc": "24/7 physician-supervised withdrawal management; MAT available.",
+          "duration": "3–14 days",
+          "badge": "MEDICAL",
+          "badge_color": "navy"
+        },
+        {
+          "name": "Residential Treatment",
+          "desc": "live-in care with individual therapy, CBT, DBT, groups, holistic programming.",
+          "duration": "3–4 weeks",
+          "badge": "RESIDENTIAL",
+          "badge_color": "slate"
+        },
+        {
+          "name": "Partial Hospitalization (PHP)",
+          "desc": "full-day structured treatment, 5 days/week, no overnight stay.",
+          "duration": "3–4 weeks",
+          "badge": "PHP",
+          "badge_color": "green"
+        },
+        {
+          "name": "Intensive Outpatient (IOP)",
+          "desc": "3 days/week, morning and evening tracks.",
+          "duration": "4–8 weeks",
+          "badge": "IOP",
+          "badge_color": "navy"
+        }
+      ]
+    },
+    "environment": {
+      "title": "Inside Our Mechanicsburg Facility",
+      "sub": "A safe, therapeutic environment designed to support focus, comfort, and lasting recovery."
+    },
+    "image_grid": [
+      "Welcoming Reception",
+      "Group Therapy Lounge",
+      "Common Areas",
+      "Admissions Office",
+      "Individual Therapy Rooms"
+    ],
+    "team": [
+      {
+        "name": "Zach Whipperman",
+        "title": "Director of Community Outreach",
+        "desc": "oversees clinical programming and therapeutic quality, specialization in dual diagnosis and trauma-informed care."
+      },
+      {
+        "name": "Kimberly Lindsey",
+        "title": "Director of Nursing, RN, BSN, CARN",
+        "desc": "leads the nursing team and oversees safety during medical detox and residential care, 20 years of addiction nursing experience."
+      },
+      {
+        "name": "David Root",
+        "title": "Director of Admissions, CADC, CIP",
+        "desc": "guides individuals and families through admissions with clarity and compassion, available 24/7."
+      }
+    ],
+    "insurance": {
+      "body": "Financial concerns should never be a barrier to treatment. Arkview works with most major insurance plans and offers flexible payment options. Verify your benefits in minutes, at no cost.",
+      "logos": [
+        "Aetna",
+        "BlueCross BlueShield",
+        "Cigna",
+        "UnitedHealthcare",
+        "Humana",
+        "UPMC",
+        "Magellan",
+        "Beacon Health",
+        "ComPsych",
+        "Highmark",
+        "Geisinger",
+        "Independence Blue Cross"
+      ]
+    },
+    "expect": [
+      {
+        "num": "01",
+        "title": "Call or Submit a Form",
+        "desc": "Call (717) 744-0756 or fill out the contact form. Our admissions specialists answer 24/7 — no wait, no judgment, completely confidential."
+      },
+      {
+        "num": "02",
+        "title": "Free Assessment",
+        "desc": "A licensed clinician does a brief, confidential assessment to understand your situation and recommend the right level of care."
+      },
+      {
+        "num": "03",
+        "title": "Admission & Begin Treatment",
+        "desc": "We handle benefits verification and logistics so you can focus on what matters. Most admissions happen within 24–48 hours."
+      }
+    ],
+    "local_impact": "Like much of Pennsylvania, Cumberland County has been hit hardest by opioids and alcohol, with methamphetamine use climbing in recent years. Co-occurring mental health conditions — depression, anxiety, PTSD — frequently show up alongside substance use. Arkview's Mechanicsburg campus sits in the center of the county and serves individuals and families across the greater Harrisburg area, so clinical-grade care stays close to home.",
+    "faqs": [
+      {
+        "q": "Is Arkview currently accepting new admissions?",
+        "a": "Yes. Our Mechanicsburg campus admits 24/7, and most admissions happen within 24–48 hours of your first call."
+      },
+      {
+        "q": "Does Arkview accept my insurance in Pennsylvania?",
+        "a": "We're in-network with most major commercial plans. Call and we'll verify your benefits at no cost, usually within minutes."
+      },
+      {
+        "q": "What's the difference between residential and outpatient treatment?",
+        "a": "Residential means living on-site with around-the-clock care. Outpatient (PHP and IOP) means structured treatment during the day while you live at home."
+      },
+      {
+        "q": "Can I bring my phone or personal belongings?",
+        "a": "Our admissions team will walk you through exactly what to bring and our policies before you arrive."
+      },
+      {
+        "q": "Does Arkview treat mental health conditions alongside addiction?",
+        "a": "Yes — we run separate, dedicated programs for mental health and substance use, so each one gets focused care."
+      },
+      {
+        "q": "How long does treatment typically last?",
+        "a": "A few days for detox, several weeks for residential and outpatient."
+      }
+    ],
+    "final_cta": {
+      "title": "Ready to Take the First Step Toward Recovery?",
+      "sub": "Our team is here 24/7 — free, confidential, no obligation."
+    },
+    "nearby": [
+      "Camp Hill",
+      "Carlisle",
+      "Harrisburg",
+      "Hershey",
+      "Enola",
+      "New Cumberland",
+      "Boiling Springs",
+      "Lemoyne"
+    ]
+  },
+  {
+    "kind": "location",
+    "key": "York",
+    "county": "York",
+    "slug": "york-pa",
+    "slug_full": "/locations/york-pa/",
+    "address": "[VERIFY: East York outpatient street address]",
+    "phone": "[VERIFY public number]",
+    "nearest_facility": "",
+    "distance_mi": "",
+    "distance_min": "",
+    "programs": "PHP, IOP (MH + SUD), Virtual IOP — OUTPATIENT ONLY",
+    "title_tag": "Mental Health and Addiction Center in York, PA",
+    "meta_description": "Outpatient addiction and mental health care — PHP and IOP — in East York, PA. Joint Commission accredited. Call Arkview 24/7.",
+    "h1": "Mental Health and Addiction Center in York, PA",
+    "hero_sub": "Serving York and York County, Arkview's East York location offers outpatient addiction and mental health care — PHP and IOP for both substance use and mental health, with detox and residential at our Mechanicsburg campus. Evidence-based. 24/7 admissions.",
+    "trust_bar": [
+      "Accredited by The Joint Commission",
+      "Most Insurance Accepted",
+      "24/7 Admissions"
+    ],
+    "intro": "If you or someone you love in York is struggling with addiction, substance use, or a mental health condition, Arkview's East York location offers outpatient care close to home. Our partial hospitalization (PHP) and intensive outpatient (IOP) programs treat both mental health and substance use in separate, dedicated tracks. When a higher level of care is needed, medically supervised detox and residential treatment are available at our Mechanicsburg campus, and Virtual IOP is available if daily travel isn't an option. You don't have to navigate this alone.",
+    "stat_cards": [
+      {
+        "big": "55,000 sq ft",
+        "label": "All services under one roof"
+      },
+      {
+        "big": "1 of 1–2 in PA",
+        "label": "Separate facilities for mental health & addiction"
+      },
+      {
+        "big": "Accredited",
+        "label": "By The Joint Commission"
+      },
+      {
+        "big": "In-network",
+        "label": "With most major insurers"
+      }
+    ],
+    "levels": {
+      "title": "Outpatient Programs at Our East York Location",
+      "cards": [
+        {
+          "name": "Partial Hospitalization (PHP)",
+          "desc": "full-day structured treatment for mental health and substance use, 5 days/week, no overnight stay.",
+          "duration": "3–4 weeks",
+          "badge": "PHP",
+          "badge_color": "green"
+        },
+        {
+          "name": "Intensive Outpatient (IOP)",
+          "desc": "3 days/week, morning and evening tracks.",
+          "duration": "4–8 weeks",
+          "badge": "IOP",
+          "badge_color": "navy"
+        },
+        {
+          "name": "Detox & residential available at our Mechanicsburg campus",
+          "desc": "",
+          "duration": "",
+          "badge": "MEDICAL",
+          "badge_color": "navy"
+        },
+        {
+          "name": "Virtual IOP statewide",
+          "desc": "",
+          "duration": "",
+          "badge": "IOP",
+          "badge_color": "navy"
+        }
+      ]
+    },
+    "environment": {
+      "title": "Inside Our East York Location",
+      "sub": "A safe, therapeutic environment designed to support focus and recovery."
+    },
+    "image_grid": [
+      "Welcoming Reception",
+      "Group Therapy Lounge",
+      "Common Areas",
+      "Admissions Office",
+      "Individual Therapy Rooms"
+    ],
+    "team": [
+      {
+        "name": "Zach Whipperman",
+        "title": "Director of Community Outreach",
+        "desc": "oversees clinical programming and therapeutic quality, specialization in dual diagnosis and trauma-informed care."
+      },
+      {
+        "name": "Kimberly Lindsey",
+        "title": "Director of Nursing, RN, BSN, CARN",
+        "desc": "leads the nursing team and oversees safety during medical detox and residential care, 20 years of addiction nursing experience."
+      },
+      {
+        "name": "David Root",
+        "title": "Director of Admissions, CADC, CIP",
+        "desc": "guides individuals and families through admissions with clarity and compassion, available 24/7."
+      }
+    ],
+    "insurance": {
+      "body": "Financial concerns should never be a barrier to treatment. Arkview works with most major insurance plans and offers flexible payment options. Verify your benefits in minutes, at no cost.",
+      "logos": [
+        "Aetna",
+        "BlueCross BlueShield",
+        "Cigna",
+        "UnitedHealthcare",
+        "Humana",
+        "UPMC",
+        "Magellan",
+        "Beacon Health",
+        "ComPsych",
+        "Highmark",
+        "Geisinger",
+        "Independence Blue Cross"
+      ]
+    },
+    "expect": [
+      {
+        "num": "01",
+        "title": "Call or Submit a Form",
+        "desc": "Call (717) 744-0756 or fill out the contact form. Our admissions specialists answer 24/7 — no wait, no judgment, completely confidential."
+      },
+      {
+        "num": "02",
+        "title": "Free Assessment",
+        "desc": "A licensed clinician does a brief, confidential assessment to understand your situation and recommend the right level of care."
+      },
+      {
+        "num": "03",
+        "title": "Admission & Begin Treatment",
+        "desc": "We handle benefits verification and logistics so you can focus on what matters. Most admissions happen within 24–48 hours."
+      }
+    ],
+    "local_impact": "Like much of Pennsylvania, York County has been hit hardest by opioids and alcohol, with methamphetamine use climbing in recent years, often alongside depression, anxiety, or PTSD. Arkview's East York location brings outpatient behavioral health and addiction care close to home for York-area residents and families.",
+    "faqs": [
+      {
+        "q": "Is Arkview currently accepting new admissions?",
+        "a": "Yes — our East York location admits 24/7, and most admissions happen within 24–48 hours of your first call."
+      },
+      {
+        "q": "Does Arkview accept my insurance in Pennsylvania?",
+        "a": "We're in-network with most major commercial plans. Call and we'll verify your benefits at no cost, usually within minutes."
+      },
+      {
+        "q": "What outpatient programs do you offer in East York?",
+        "a": "Partial hospitalization (PHP) and intensive outpatient (IOP) for both mental health and substance use."
+      },
+      {
+        "q": "What if I need detox or residential treatment?",
+        "a": "Those are available at our Mechanicsburg campus, and our team coordinates the transition for you."
+      },
+      {
+        "q": "Does Arkview treat mental health conditions alongside addiction?",
+        "a": "Yes — separate, dedicated programs for each, so both get focused care."
+      },
+      {
+        "q": "Is virtual treatment available?",
+        "a": "Yes — our Virtual IOP runs the same program online, with in-person backup at our PA locations."
+      }
+    ],
+    "final_cta": {
+      "title": "Ready to Take the First Step Toward Recovery?",
+      "sub": "Our East York team is here 24/7 — free, confidential, no obligation."
+    },
+    "nearby": [
+      "Dallastown",
+      "Red Lion",
+      "Dover",
+      "Manchester",
+      "Spring Grove",
+      "Hanover"
+    ]
+  },
+  {
+    "kind": "location",
+    "key": "Fayetteville",
+    "county": "Franklin",
+    "slug": "fayetteville-pa",
+    "slug_full": "/locations/fayetteville-pa/",
+    "address": "[VERIFY — opening soon, awaiting environmental approval]",
+    "phone": "[VERIFY]",
+    "nearest_facility": "",
+    "distance_mi": "",
+    "distance_min": "",
+    "programs": "Mental health inpatient: detox + residential (OPENING SOON)",
+    "title_tag": "Mental Health and Addiction Center in Fayetteville, PA",
+    "meta_description": "Arkview's new dedicated mental health inpatient facility in Fayetteville, PA — detox and residential. Opening soon. Call to learn more.",
+    "h1": "Mental Health and Addiction Center in Fayetteville, PA",
+    "hero_sub": "[PRE-LAUNCH] Coming soon to Fayetteville — Arkview's dedicated mental health inpatient facility with suite-style rooms. Call to learn more or join the interest list.",
+    "trust_bar": [
+      "Accredited by The Joint Commission",
+      "Most Insurance Accepted",
+      "24/7 Admissions"
+    ],
+    "intro": "[HOLD — coming-soon framing only until opening confirmed] Arkview is opening a dedicated mental health inpatient facility in Fayetteville, designed specifically for primary mental health detox and residential care, with suite-style rooms. Until doors open, our Mechanicsburg and East York locations and Virtual IOP serve the region. Call to learn more or be notified when we open.",
+    "stat_cards": [
+      {
+        "big": "55,000 sq ft",
+        "label": "All services under one roof"
+      },
+      {
+        "big": "1 of 1–2 in PA",
+        "label": "Separate facilities for mental health & addiction"
+      },
+      {
+        "big": "Accredited",
+        "label": "By The Joint Commission"
+      },
+      {
+        "big": "In-network",
+        "label": "With most major insurers"
+      }
+    ],
+    "levels": {
+      "title": "Coming Soon — Dedicated Mental Health Inpatient Care",
+      "cards": [
+        {
+          "name": "[Detox + residential, mental-health-specific. Confirm program detail at launch.]",
+          "desc": "",
+          "duration": "",
+          "badge": "MEDICAL",
+          "badge_color": "navy"
+        }
+      ]
+    },
+    "environment": {
+      "title": "Inside Our Fayetteville Facility",
+      "sub": "suite-style rooms (flagship). [Photos pending opening.]"
+    },
+    "image_grid": [
+      "[Photos pending Fayetteville opening — reuse shared set as interim]"
+    ],
+    "team": [
+      {
+        "name": "Zach Whipperman",
+        "title": "Director of Community Outreach",
+        "desc": "oversees clinical programming and therapeutic quality, specialization in dual diagnosis and trauma-informed care."
+      },
+      {
+        "name": "Kimberly Lindsey",
+        "title": "Director of Nursing, RN, BSN, CARN",
+        "desc": "leads the nursing team and oversees safety during medical detox and residential care, 20 years of addiction nursing experience."
+      },
+      {
+        "name": "David Root",
+        "title": "Director of Admissions, CADC, CIP",
+        "desc": "guides individuals and families through admissions with clarity and compassion, available 24/7."
+      }
+    ],
+    "insurance": {
+      "body": "Financial concerns should never be a barrier to treatment. Arkview works with most major insurance plans and offers flexible payment options. Verify your benefits in minutes, at no cost.",
+      "logos": [
+        "Aetna",
+        "BlueCross BlueShield",
+        "Cigna",
+        "UnitedHealthcare",
+        "Humana",
+        "UPMC",
+        "Magellan",
+        "Beacon Health",
+        "ComPsych",
+        "Highmark",
+        "Geisinger",
+        "Independence Blue Cross"
+      ]
+    },
+    "expect": [
+      {
+        "num": "01",
+        "title": "Call or Submit a Form",
+        "desc": "Call (717) 744-0756 or fill out the contact form. Our admissions specialists answer 24/7 — no wait, no judgment, completely confidential."
+      },
+      {
+        "num": "02",
+        "title": "Free Assessment",
+        "desc": "A licensed clinician does a brief, confidential assessment to understand your situation and recommend the right level of care."
+      },
+      {
+        "num": "03",
+        "title": "Admission & Begin Treatment",
+        "desc": "We handle benefits verification and logistics so you can focus on what matters. Most admissions happen within 24–48 hours."
+      }
+    ],
+    "local_impact": "[GENERATE at launch] Franklin County behavioral health context.",
+    "faqs": [
+      {
+        "q": "When does the Fayetteville facility open?",
+        "a": "[CONFIRM date — currently awaiting environmental approval.]"
+      },
+      {
+        "q": "What will the Fayetteville facility offer?",
+        "a": "Dedicated mental health inpatient care — detox and residential — in suite-style rooms."
+      },
+      {
+        "q": "Where can I get care in the meantime?",
+        "a": "Our Mechanicsburg and East York locations, plus Virtual IOP statewide."
+      },
+      {
+        "q": "How do I get notified when you open?",
+        "a": "Call (717) 744-0756 or fill out the contact form to join the interest list."
+      }
+    ],
+    "final_cta": {
+      "title": "Opening Soon in Fayetteville",
+      "sub": "Want to know when we open?"
+    },
+    "nearby": [
+      "Chambersburg",
+      "Greencastle",
+      "Waynesboro",
+      "Shippensburg"
+    ]
+  },
+  {
+    "kind": "location",
+    "key": "Pennsylvania",
+    "county": "Statewide",
+    "slug": "pennsylvania",
+    "slug_full": "/locations/pennsylvania/",
+    "address": "N/A (statewide hub)",
+    "phone": "(717) 744-0756",
+    "nearest_facility": "",
+    "distance_mi": "",
+    "distance_min": "",
+    "programs": "All levels: Detox, Residential, PHP, IOP, MAT, Virtual IOP",
+    "title_tag": "Mental Health and Addiction Treatment in Pennsylvania",
+    "meta_description": "Addiction and mental health treatment across Pennsylvania — detox, residential, outpatient, and Virtual IOP statewide. Call Arkview 24/7.",
+    "h1": "Mental Health and Addiction Treatment in Pennsylvania",
+    "hero_sub": "Arkview Behavioral Health serves people across Pennsylvania with in-person care at our Mechanicsburg and East York campuses and Virtual IOP available statewide. Evidence-based. 24/7 admissions.",
+    "trust_bar": [
+      "Accredited by The Joint Commission",
+      "Most Insurance Accepted",
+      "24/7 Admissions"
+    ],
+    "intro": "Wherever you are in Pennsylvania, if you or someone you love is struggling with addiction, substance use, or a mental health condition, Arkview can help. We provide a full continuum of care — medically supervised detox and residential treatment at our Mechanicsburg campus, outpatient PHP and IOP at Mechanicsburg and East York, and Virtual IOP available statewide. As one of only a handful of Pennsylvania providers with separate, dedicated facilities for mental health and substance use, we make sure each program fits what you're actually here for. You don't have to navigate this alone.",
+    "stat_cards": [
+      {
+        "big": "55,000 sq ft",
+        "label": "All services under one roof"
+      },
+      {
+        "big": "1 of 1–2 in PA",
+        "label": "Separate facilities for mental health & addiction"
+      },
+      {
+        "big": "Accredited",
+        "label": "By The Joint Commission"
+      },
+      {
+        "big": "In-network",
+        "label": "With most major insurers"
+      }
+    ],
+    "levels": {
+      "title": "Levels of Care Across Pennsylvania",
+      "cards": [
+        {
+          "name": "Medical Detox",
+          "desc": "24/7 physician-supervised withdrawal management; MAT available.",
+          "duration": "3–14 days",
+          "badge": "MEDICAL",
+          "badge_color": "navy"
+        },
+        {
+          "name": "Residential Treatment",
+          "desc": "live-in care with individual therapy, CBT, DBT, groups, holistic programming.",
+          "duration": "3–4 weeks",
+          "badge": "RESIDENTIAL",
+          "badge_color": "slate"
+        },
+        {
+          "name": "Partial Hospitalization (PHP)",
+          "desc": "full-day structured treatment, 5 days/week, no overnight stay.",
+          "duration": "3–4 weeks",
+          "badge": "PHP",
+          "badge_color": "green"
+        },
+        {
+          "name": "Intensive Outpatient (IOP)",
+          "desc": "3 days/week, morning and evening tracks.",
+          "duration": "4–8 weeks",
+          "badge": "IOP",
+          "badge_color": "navy"
+        },
+        {
+          "name": "Medication-Assisted Treatment (MAT)",
+          "desc": "",
+          "duration": "",
+          "badge": "MAT",
+          "badge_color": "slate"
+        },
+        {
+          "name": "Virtual IOP",
+          "desc": "same program online, statewide, with in-person backup.",
+          "duration": "",
+          "badge": "IOP",
+          "badge_color": "navy"
+        }
+      ]
+    },
+    "environment": {
+      "title": "Our Pennsylvania Facilities",
+      "sub": "Mechanicsburg (full continuum) and East York (outpatient); Fayetteville mental health inpatient opening soon."
+    },
+    "image_grid": [
+      "Welcoming Reception",
+      "Group Therapy Lounge",
+      "Common Areas",
+      "Admissions Office",
+      "Individual Therapy Rooms"
+    ],
+    "team": [
+      {
+        "name": "Zach Whipperman",
+        "title": "Director of Community Outreach",
+        "desc": "oversees clinical programming and therapeutic quality, specialization in dual diagnosis and trauma-informed care."
+      },
+      {
+        "name": "Kimberly Lindsey",
+        "title": "Director of Nursing, RN, BSN, CARN",
+        "desc": "leads the nursing team and oversees safety during medical detox and residential care, 20 years of addiction nursing experience."
+      },
+      {
+        "name": "David Root",
+        "title": "Director of Admissions, CADC, CIP",
+        "desc": "guides individuals and families through admissions with clarity and compassion, available 24/7."
+      }
+    ],
+    "insurance": {
+      "body": "Financial concerns should never be a barrier to treatment. Arkview works with most major insurance plans and offers flexible payment options. Verify your benefits in minutes, at no cost.",
+      "logos": [
+        "Aetna",
+        "BlueCross BlueShield",
+        "Cigna",
+        "UnitedHealthcare",
+        "Humana",
+        "UPMC",
+        "Magellan",
+        "Beacon Health",
+        "ComPsych",
+        "Highmark",
+        "Geisinger",
+        "Independence Blue Cross"
+      ]
+    },
+    "expect": [
+      {
+        "num": "01",
+        "title": "Call or Submit a Form",
+        "desc": "Call (717) 744-0756 or fill out the contact form. Our admissions specialists answer 24/7 — no wait, no judgment, completely confidential."
+      },
+      {
+        "num": "02",
+        "title": "Free Assessment",
+        "desc": "A licensed clinician does a brief, confidential assessment to understand your situation and recommend the right level of care."
+      },
+      {
+        "num": "03",
+        "title": "Admission & Begin Treatment",
+        "desc": "We handle benefits verification and logistics so you can focus on what matters. Most admissions happen within 24–48 hours."
+      }
+    ],
+    "local_impact": "Pennsylvania continues to face one of the most serious addiction and mental health challenges in the country, with opioids and alcohol leading and methamphetamine and co-occurring conditions rising. Arkview's two campuses plus statewide Virtual IOP keep clinical-grade care within reach no matter where you live in the state.",
+    "faqs": [
+      {
+        "q": "Where is Arkview located in Pennsylvania?",
+        "a": "We have campuses in Mechanicsburg and East York, with a mental health inpatient facility opening soon in Fayetteville."
+      },
+      {
+        "q": "Do you serve my area?",
+        "a": "If you're in Pennsylvania, yes — in person at our campuses or statewide through Virtual IOP."
+      },
+      {
+        "q": "What is Virtual IOP?",
+        "a": "The same intensive outpatient program delivered online, with in-person backup at our PA locations."
+      },
+      {
+        "q": "Does Arkview accept my insurance in Pennsylvania?",
+        "a": "We're in-network with most major commercial plans. Call and we'll verify your benefits at no cost."
+      },
+      {
+        "q": "Does Arkview treat mental health conditions alongside addiction?",
+        "a": "Yes — separate, dedicated programs for each, so both get focused care."
+      }
+    ],
+    "final_cta": {
+      "title": "Get Help Anywhere in Pennsylvania",
+      "sub": "In-person or virtual, our team is here 24/7 — free, confidential, no obligation."
+    },
+    "nearby": [
+      "Mechanicsburg",
+      "York",
+      "Harrisburg",
+      "Lancaster",
+      "Carlisle",
+      "Hershey"
+    ]
+  }
+]
