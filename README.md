@@ -1,3 +1,3 @@
-# WordPress
+# Webflow
 
-This is my repo for automating WordPress deliverables.
+This is my repo for automating Webflow deliverables.
